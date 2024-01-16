@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
+use App\Livewire\AdminPanel\Login\Login;
 use App\Livewire\AdminPanel\Dashboard;
 use App\Livewire\AdminPanel\Category\Categories;
 use App\Livewire\AdminPanel\News\NewsList;
@@ -14,7 +15,7 @@ use App\Livewire\AdminPanel\PrivacyPolicy\PrivacyPolicy;
 use App\Livewire\AdminPanel\TermsConditions\TermsConditions;
 
 
-
+Route::get("/login",Login::class)->name("login");
 Route::get("dashboard", Dashboard::class)->name("dashboard");
 Route::get("categories", Categories::class)->name("categories");
 Route::get("news-list", NewsList::class)->name("news-list");
