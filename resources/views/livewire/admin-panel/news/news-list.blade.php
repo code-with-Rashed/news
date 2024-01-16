@@ -160,3 +160,10 @@
     <livewire:admin-panel.news.news-management />
     {{-- News Management Modal End --}}
 </div>
+<!-- CK editor script initialize  -->
+<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector("#addNews"))
+    ClassicEditor.create(document.querySelector("#editNews"))
+</script>
+<!-- CK editor script end  -->

@@ -36,3 +36,9 @@
     <livewire:admin-panel.privacy-policy.privacy-policy-management />
     {{-- Privacy Policy Management Modal End --}}
 </div>
+<!-- CK editor script initialize  -->
+<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector("#editPrivacyPolicy"))
+</script>
+<!-- CK editor script end  -->

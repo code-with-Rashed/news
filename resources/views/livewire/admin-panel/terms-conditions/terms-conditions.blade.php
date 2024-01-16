@@ -31,3 +31,9 @@
     <livewire:admin-panel.terms-conditions.terms-conditions-management />
     {{-- Terms & Conditions Policy Management Modal End --}}
 </div>
+<!-- CK editor script initialize  -->
+<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector("#editTermsConditions"))
+</script>
+<!-- CK editor script end  -->

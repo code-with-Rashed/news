@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="news" class="fw-bold mb-2">News</label>
-                            <textarea class="form-control" id="news" cols="30" rows="6" placeholder="News...."></textarea>
+                            <textarea class="form-control" id="addNews" cols="30" rows="6" placeholder="News...."></textarea>
                         </div>
                         <div class="form-group d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="news" class="fw-bold mb-2">News</label>
-                            <textarea class="form-control" id="news" cols="30" rows="6"
+                            <textarea class="form-control" id="editNews" cols="30" rows="6"
                                 placeholder="News......">
  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, veritatis id! Officiis ad optio aliquid hic distinctio labore earum, ex modi recusandae delectus, vitae inventore nam quos vero, soluta animi unde illo sit! Accusantium, labore? Porro nostrum dignissimos voluptatem voluptate ut vel ratione perspiciatis non aspernatur voluptatum iste, perferendis impedit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sed quod consequatur corporis fugiat! Cum dignissimos dolore commodi quidem fugiat?</textarea>
                         </div>
