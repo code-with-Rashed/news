@@ -17,91 +17,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Politics</td>
-                        <td>5</td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editCategoryModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>International</td>
-                        <td>10</td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editCategoryModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sports</td>
-                        <td>20</td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editCategoryModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Lifestyle</td>
-                        <td>15</td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editCategoryModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
+                    @foreach ($categories as $category)
+                        <tr>
+                            <td>{{ $category->id }}</td>
+                            <td>{{ $category->name }}</td>
+                            <td>{{ $category->total_news }}</td>
+                            <td>
+                                <button wire:click="open_editable_category_modal({{ $category->id }})"
+                                    class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#editCategoryModal">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Edit
+                                </button>
+                                <button wire:click="open_confirmed_deletable_category_modal({{ $category->id }})"
+                                    class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash"></i>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <ul class="pagination">
-                <li class="page-item">
-                    <a href="" class="page-link">Previous</a>
-                </li>
-                <li class="page-item active">
-                    <a href="" class="page-link">1</a>
-                </li>
-                <li class="page-item"><a href="" class="page-link">2</a></li>
-                <li class="page-item"><a href="" class="page-link">3</a></li>
-                <li class="page-item"><a href="" class="page-link">4</a></li>
-                <li class="page-item"><a href="" class="page-link">Next</a></li>
-            </ul>
+            <!-- Pagination start -->
+            {{ $categories->links() }}
+            <!-- Pagination end -->
         </div>
     </div>
-    {{-- Category Management Modal Start --}}
-    <livewire:admin-panel.category.category-management />
-    {{-- Category Management Modal End --}}
+    <!-- Category Management Modal Start -->
+    @include('livewire.admin-panel.category.category-management')
+    <!-- Category Management Modal End -->
 </div>
