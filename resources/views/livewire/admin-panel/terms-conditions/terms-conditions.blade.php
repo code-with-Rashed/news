@@ -12,28 +12,21 @@
             </div>
             <div class="row">
                 <div class="col-10 p-2 rounded shadow-sm m-auto">
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Rerum natus corporis esse sit voluptatum illo aliquid
-                        provident est atque dolorem.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Aut, sed. Maiores, excepturi rem! Quos sequi minus hic
-                        labore porro temporibus voluptates dolore dolorum, maiores
-                        harum quas omnis id voluptatibus fugit!
-                    </p>
+                    {!! $settings->terms_conditions !!}
                 </div>
             </div>
         </div>
     </div>
-    {{-- Terms & Conditions Management Modal Start --}}
-    <livewire:admin-panel.terms-conditions.terms-conditions-management />
-    {{-- Terms & Conditions Policy Management Modal End --}}
+    <!-- Terms & Conditions Management Modal Start -->
+    @include('livewire.admin-panel.terms-conditions.terms-conditions-management')
+    <!-- Terms & Conditions Policy Management Modal End -->
 </div>
 <!-- CK editor script initialize  -->
-<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor.create(document.querySelector("#editTermsConditions"))
-</script>
+@push('handleCkeditor')
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+    <script src="{{ asset('assets/js/handleCkeditor.js') }}"></script>
+    <script>
+        handleCkeditor("#editTermsConditions", "data-terms-conditions", "terms_conditions", "#updateButton");
+    </script>
+@endpush
 <!-- CK editor script end  -->
