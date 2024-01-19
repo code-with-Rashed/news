@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("logo",100);
             $table->string("favicon",100);
             $table->text("privacy_policy");
-            $table->text("terms_consitions");
+            $table->text("terms_conditions");
             $table->enum("shutdown",[0,1])->default(0);
             $table->timestamps();
         });

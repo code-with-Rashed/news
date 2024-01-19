@@ -16,7 +16,7 @@ class SettingSeeder extends Seeder
         $setting->logo = "logo.png";
         $setting->favicon = "fav.png";
         $setting->privacy_policy = "Here is Privacy Policy.";
-        $setting->terms_consitions = "Here is Terms & Conditions.";
+        $setting->terms_conditions = "Here is Terms & Conditions.";
         $setting->save();
     }
 }
