@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Message;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +16,8 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             CategorySeeder::class
         ]);
+
+        // Create Fake Messages
+        Message::factory(10)->create();
     }
 }
