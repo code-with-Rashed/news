@@ -68,7 +68,7 @@ class MessageList extends Component
 
     public function render()
     {
-        $messages = Message::orderBy("id", "desc")->paginate(5);
+        $messages = Message::orderBy("status", "asc")->paginate(5);
         return view('livewire.admin-panel.messages.message-list')->with(compact("messages"));
     }
 }
