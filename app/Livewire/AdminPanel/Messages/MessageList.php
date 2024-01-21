@@ -27,6 +27,17 @@ class MessageList extends Component
         $this->email = $message->email;
         $this->subject = $message->subject;
         $this->fullMessage = $message->message;
+
+        if ($message->status == 0) {
+            $message->status = '1';
+            $message->update();
+
+            $this->dispatch(
+                "alert",
+                type: "success",
+                title: "Message is Readed."
+            );
+        }
     }
 
     public function status($id)
