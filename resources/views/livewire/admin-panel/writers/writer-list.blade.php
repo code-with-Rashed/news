@@ -13,130 +13,65 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        <th>Roll</th>
                         <th>News Write</th>
-                        <th>Join Date</th>
+                        <th>Joining Date</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Rashed alam</td>
-                        <td>rashed@gmail.com</td>
-                        <td>Admin</td>
-                        <td>14</td>
-                        <td>12/22/2023</td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#detailWriterModal">
-                                <i class="bi bi-file-earmark-break"></i>
-                                Details
-                            </button>
-                            <button class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editWriterModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Noyon ali</td>
-                        <td>noyon@gmail.com</td>
-                        <td>Writer</td>
-                        <td>40</td>
-                        <td>09/22/2023</td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#detailWriterModal">
-                                <i class="bi bi-file-earmark-break"></i>
-                                Details
-                            </button>
-                            <button class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editWriterModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Raihan islam</td>
-                        <td>raihan@gmail.com</td>
-                        <td>Modaratior</td>
-                        <td>20</td>
-                        <td>12/22/2023</td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#detailWriterModal">
-                                <i class="bi bi-file-earmark-break"></i>
-                                Details
-                            </button>
-                            <button class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editWriterModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Arafat islam</td>
-                        <td>arafat@gmail.com</td>
-                        <td>Writer</td>
-                        <td>10</td>
-                        <td>10/22/2023</td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#detailWriterModal">
-                                <i class="bi bi-file-earmark-break"></i>
-                                Details
-                            </button>
-                            <button class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editWriterModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
+                    @foreach ($writers as $writer)
+                        <tr>
+                            <td>{{ $writer->id }}</td>
+                            <td>{{ $writer->name }}</td>
+                            <td>{{ $writer->email }}</td>
+                            <td>{{ $writer->roll }}</td>
+                            <td>{{ $writer->writed_news }}</td>
+                            <td>{{ date('d/m/Y', strtotime($writer->created_at)) }}</td>
+                            <td>
+                                @if ($writer->status == 1)
+                                    <button class="btn btn-primary btn-sm m-1" type="button"
+                                        wire:click="status({{ $writer->id }})">
+                                        <i class="bi bi-check2-all"></i>
+                                        Active
+                                    </button>
+                                @else
+                                    <button class="btn btn-warning btn-sm m-1" type="button"
+                                        wire:click="status({{ $writer->id }})">
+                                        <i class="bi bi-exclamation-triangle"></i>
+                                        In-Active
+                                    </button>
+                                @endif
+                            </td>
+                            <td>
+                                <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#detailWriterModal">
+                                    <i class="bi bi-file-earmark-break"></i>
+                                    Details
+                                </button>
+                                <button wire:click="open_editable_writer_modal({{ $writer->id }})" class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#editWriterModal">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Edit
+                                </button>
+                                <button wire:click="open_confirmed_deletable_writer_modal({{ $writer->id }})"
+                                    class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash"></i>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <ul class="pagination">
-                <li class="page-item">
-                    <a href="" class="page-link">Previous</a>
-                </li>
-                <li class="page-item active">
-                    <a href="" class="page-link">1</a>
-                </li>
-                <li class="page-item"><a href="" class="page-link">2</a></li>
-                <li class="page-item"><a href="" class="page-link">3</a></li>
-                <li class="page-item"><a href="" class="page-link">4</a></li>
-                <li class="page-item"><a href="" class="page-link">Next</a></li>
-            </ul>
+            <!-- Pagination Start-->
+            {{ $writers->links() }}
+            <!-- Pagination End-->
         </div>
     </div>
-      {{-- Writers Management Modal Start --}}
-      <livewire:admin-panel.writers.writers-management />
-      {{-- Writers Management Modal End --}}
+    <!-- Writers Management Modal Start -->
+    @include('livewire.admin-panel.writers.writers-management')
+    <!-- Writers Management Modal End -->
 </div>
