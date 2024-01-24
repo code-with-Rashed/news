@@ -23,7 +23,7 @@ class WriterSeeder extends Seeder
                 "password" => Hash::make("12345")
             ],
             [
-                "roll" => "moderate",
+                "roll" => "moderator",
                 "photo" => "user.jpg",
                 "name" => "Arafat islam",
                 "email" => "arafat@news.com",
