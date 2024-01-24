@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("email", "100")->unique();
             $table->integer("writed_news");
             $table->string("password",100);
-            $table->enum("status",[0,1])->default(0);
+            $table->enum("status",[0,1])->default(1);
             $table->timestamps();
         });
     }
