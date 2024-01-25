@@ -24,7 +24,6 @@ class Login extends Component
         if (!is_null($writer)) {
             if (Hash::check($this->password, $writer->password)) {
                 session(["admin" => [
-                    "login" => true,
                     "id" => $writer->id,
                     "name" => $writer->name,
                     "photo" => $writer->photo,
