@@ -13,7 +13,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-end">
                 <li><a href="{{route("admin.profile")}}" class="dropdown-item">Profile</a></li>
-                <li><a href="" class="dropdown-item">Logout</a></li>
+                <li><a href="{{route("admin.logout")}}" class="dropdown-item">Logout</a></li>
             </ul>
         </div>
     </div>

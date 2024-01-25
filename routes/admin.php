@@ -27,4 +27,8 @@ Route::middleware("access_admin_pages")->group(function () {
     Route::get("profile", Profile::class)->name("profile");
     Route::get("privacy-policy", PrivacyPolicy::class)->name("privacy-policy");
     Route::get("terms-conditions", TermsConditions::class)->name("terms-conditions");
+    Route::get("logout", function () {
+        session()->forget("admin");
+        return redirect()->route("admin.login");
+    })->name("logout");
 });
