@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Writer extends Model
+class News extends Model
 {
     use HasFactory;
 
-    public function news()
+    public function writer()
     {
-        return $this->hasMany(News::class);
+        return $this->belongsTo(Writer::class);
     }
 }
