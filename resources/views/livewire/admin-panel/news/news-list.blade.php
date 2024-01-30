@@ -156,14 +156,16 @@
             </ul>
         </div>
     </div>
-    {{-- News Management Modal Start --}}
-    <livewire:admin-panel.news.news-management />
-    {{-- News Management Modal End --}}
+    <!-- News Management Modal Start -->
+    @include("livewire.admin-panel.news.news-management");
+    <!-- News Management Modal End -->
 </div>
 <!-- CK editor script initialize  -->
-<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor.create(document.querySelector("#addNews"))
-    ClassicEditor.create(document.querySelector("#editNews"))
-</script>
+@push('handleCkeditor')
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+    <script src="{{ asset('assets/js/handleCkeditor.js') }}"></script>
+    <script>
+        handleCkeditor("#writeNews", "data-write-news", "news", "#saveButton");
+    </script>
+@endpush
 <!-- CK editor script end  -->
