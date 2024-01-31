@@ -54,6 +54,21 @@ class NewsList extends Component
         );
     }
 
+    // change news publish or un-publish status
+    public function status($id)
+    {
+        $news = News::find($id);
+        $status = $news->status ? 0 : 1;
+        $news->status = $status;
+        $news->update();
+
+        $this->dispatch(
+            "alert",
+            type: $status ? "success" : "error",
+            title: $status ? "News is published." : "News is un-published!!"
+        );
+    }
+
     public function render()
     {
         $categories = Category::all();
