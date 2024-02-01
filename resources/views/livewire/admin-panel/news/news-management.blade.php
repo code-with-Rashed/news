@@ -7,7 +7,8 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">
                     Add New News
                 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click="resetProperties()"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    wire:click="resetProperties()"></button>
             </div>
             <div class="modal-body">
                 <form wire:submit="add_news()">
@@ -17,7 +18,7 @@
                             required />
                         @if ($image)
                             <img src="{{ $image->temporaryUrl() }}" alt="Preview image"
-                                class="w-25 my-3 d-block m-auto rounded" loading="lazy"/>
+                                class="w-25 my-3 d-block m-auto rounded" loading="lazy" />
                         @endif
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
@@ -74,7 +75,8 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">
                     Update News
                 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click="resetProperties()"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    wire:click="resetProperties()"></button>
             </div>
             <div class="modal-body">
                 <form wire:submit="update({{ $id }})">
@@ -85,11 +87,15 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="image" class="fw-bold mb-2">Chose Another Image</label>
-                        <input type="file" id="image" class="form-control" accept="image/*" wire:model="image" onchange="syncCkEditor()"/>
+                        <input type="file" id="image" class="form-control" accept="image/*" wire:model="image"
+                            onchange="syncCkEditor()" />
                         @if ($image)
                             <img src="{{ $image->temporaryUrl() }}" alt="Preview image"
                                 class="w-25 my-3 d-block m-auto rounded" />
                         @endif
+                        @error('image')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="update_category" class="fw-bold mb-2">Category</label>
@@ -100,16 +106,25 @@
                             @endforeach
                         </select>
                     </div>
+                    @error('category_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     <div class="form-group mb-3">
                         <label for="title" class="fw-bold mb-2">Title</label>
                         <input type="text" class="form-control border" id="name" required wire:model="title"
                             maxlength="255" />
+                        @error('title')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="editNews" class="fw-bold mb-2">Edit News</label>
                         <textarea class="form-control" data-edit-news="@this" id="editNews" cols="30" rows="6"
                             placeholder="News....">{{ $edit_news }}</textarea>
                     </div>
+                    @error('news')
+                        <span class="text-danger mb-2 d-block">{{ $message }}</span>
+                    @enderror
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary" id="updateButton">Update</button>
                     </div>

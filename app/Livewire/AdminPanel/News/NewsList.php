@@ -4,6 +4,7 @@ namespace App\Livewire\AdminPanel\News;
 
 use App\Models\Category;
 use App\Models\News;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -72,7 +73,48 @@ class NewsList extends Component
     // update news
     public function update($id)
     {
-        dd($this->edit_news);
+        $this->validate([
+            "category_id" => "required|exists:categories,id",
+            "image" => "nullable|image|mimes:png,jpg,jpeg,webp",
+            "title" => "required|max:255",
+            "edit_news" => "required"
+        ]);
+
+        // update news
+        $news = News::find($id);
+        if (is_null($news)) {
+            return redirect()->route('admin.news-list');
+            die;
+        }
+        $news->category_id = $this->category_id;
+        $news->writer_id = session('admin')['id'];
+        $news->title = $this->title;
+        $news->news = $this->edit_news;
+
+        // if chosed another news. then save new image & delete old image
+        if ($this->image) {
+            $image_name = $this->image->store("public/media/news");
+            $image = basename($image_name);
+            $news->image = $image;
+
+            if (Storage::exists("public/media/news/" . $this->current_image)) {
+                Storage::delete("public/media/news/" . $this->current_image);
+            }
+        }
+        $news->update();
+
+        $this->resetProperties();
+
+        $this->dispatch(
+            "bs-modal-hide",
+            name: "editNewsModal"
+        );
+
+        $this->dispatch(
+            "alert",
+            type: "success",
+            title: "News successfully updated."
+        );
     }
 
     // change news publish or un-publish status
