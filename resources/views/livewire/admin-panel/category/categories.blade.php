@@ -21,7 +21,7 @@
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
-                            <td>{{ $category->total_news }}</td>
+                            <td>{{ count($category->news) }}</td>
                             <td>
                                 <button wire:click="open_editable_category_modal({{ $category->id }})"
                                     class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
