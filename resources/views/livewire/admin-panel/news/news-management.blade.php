@@ -7,7 +7,7 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">
                     Add New News
                 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click="resetProperties()"></button>
             </div>
             <div class="modal-body">
                 <form wire:submit="add_news()">
@@ -16,12 +16,12 @@
                         <input wire:model="image" type="file" id="image" class="form-control" accept="image/*"
                             required />
                         @if ($image)
-                            <img src="{{$image->temporaryUrl()}}"
-                                alt="Preview image" class="w-25 my-3 d-block m-auto rounded" />
+                            <img src="{{ $image->temporaryUrl() }}" alt="Preview image"
+                                class="w-25 my-3 d-block m-auto rounded" loading="lazy"/>
                         @endif
                         @error('image')
-                        <span class="text-danger">{{ $message }}</span>
-                       @enderror
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="category" class="fw-bold mb-2">Category</label>
@@ -32,24 +32,25 @@
                             @endforeach
                         </select>
                         @error('category_id')
-                        <span class="text-danger">{{ $message }}</span>
-                       @enderror
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="title" class="fw-bold mb-2">Title</label>
-                        <input wire:model="title" type="text" class="form-control border" id="name" required placeholder="Title...." maxlength="255" />
+                        <input wire:model="title" type="text" class="form-control border" id="name" required
+                            placeholder="Title...." maxlength="255" />
                         @error('title')
-                         <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group mb-3" wire:ignore>
                         <label for="news" class="fw-bold mb-2">News</label>
-                        <textarea wire:model="news" class="form-control" data-write-news="@this" id="writeNews" cols="30" rows="6"
+                        <textarea class="form-control" data-write-news="@this" id="writeNews" cols="30" rows="6"
                             placeholder="News...."></textarea>
-                        </div>
-                        @error('news')
-                            <span class="text-danger mb-2 d-block">{{ $message }}</span>
-                        @enderror
+                    </div>
+                    @error('news')
+                        <span class="text-danger mb-2 d-block">{{ $message }}</span>
+                    @enderror
                     <div class="form-group d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary" id="saveButton">
                             <i class="bi bi-cloud-arrow-up"></i>
@@ -62,8 +63,10 @@
     </div>
 </div>
 <!-- Add News Modal End -->
+
 <!-- Edit News Modal Start -->
-<div class="modal fade" id="editNewsModal" data-bs-backdrop="static" data-bs-keyboard="false"
+
+<div wire:ignore.self class="modal fade" id="editNewsModal" data-bs-backdrop="static" data-bs-keyboard="false"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
@@ -71,48 +74,53 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">
                     Update News
                 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click="resetProperties()"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form wire:submit="update({{ $id }})">
                     <div class="form-group mb-3">
                         <label for="image" class="fw-bold mb-2">Current Image</label>
-                        <img src="https://img.freepik.com/free-photo/soccer-players-action-professional-stadium_654080-1130.jpg?w=1060&t=st=1700705299~exp=1700705899~hmac=7cfd061d9da698def163afc793a94d5b596070a0ff14d2d2eb153d53b4bd5ab9"
-                            alt="current image" class="w-25 ms-3 rounded" />
+                        <img src="{{ asset('storage/media/news/' . $current_image) }}" alt="current image"
+                            class="w-25 my-3 d-block m-auto rounded" loading="lazy" />
                     </div>
                     <div class="form-group mb-3">
                         <label for="image" class="fw-bold mb-2">Chose Another Image</label>
-                        <input type="file" id="image" class="form-control" accept=".png,.jpeg,.jpg" />
+                        <input type="file" id="image" class="form-control" accept="image/*" wire:model="image" onchange="syncCkEditor()"/>
+                        @if ($image)
+                            <img src="{{ $image->temporaryUrl() }}" alt="Preview image"
+                                class="w-25 my-3 d-block m-auto rounded" />
+                        @endif
                     </div>
                     <div class="form-group mb-3">
-                        <label for="role" class="fw-bold mb-2">Category</label>
-                        <select id="role" class="form-control" required>
-                            <option value="1">Politics</option>
-                            <option value="2" selected>Technology</option>
-                            <option value="3">Lifestyle</option>
-                            <option value="4">Seo</option>
+                        <label for="update_category" class="fw-bold mb-2">Category</label>
+                        <select wire:model="category_id" id="update_category" class="form-control" required>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @if ($category->id == $category_id) selected @endif>
+                                    {{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="title" class="fw-bold mb-2">Title</label>
-                        <input type="text" class="form-control border" id="name" required
-                            value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, doloremque!"
-                            maxlength="250" />
+                        <input type="text" class="form-control border" id="name" required wire:model="title"
+                            maxlength="255" />
                     </div>
                     <div class="form-group mb-3">
-                        <label for="news" class="fw-bold mb-2">News</label>
-                        <textarea class="form-control" id="editNews" cols="30" rows="6" placeholder="News......">
- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, veritatis id! Officiis ad optio aliquid hic distinctio labore earum, ex modi recusandae delectus, vitae inventore nam quos vero, soluta animi unde illo sit! Accusantium, labore? Porro nostrum dignissimos voluptatem voluptate ut vel ratione perspiciatis non aspernatur voluptatum iste, perferendis impedit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sed quod consequatur corporis fugiat! Cum dignissimos dolore commodi quidem fugiat?</textarea>
+                        <label for="editNews" class="fw-bold mb-2">Edit News</label>
+                        <textarea class="form-control" data-edit-news="@this" id="editNews" cols="30" rows="6"
+                            placeholder="News....">{{ $edit_news }}</textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary" id="updateButton">Update</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <!-- Edit News Modal End -->
+
 <!-- Details News Modal Start -->
 <div class="modal fade" id="detailNewsModal" data-bs-backdrop="static" data-bs-keyboard="false"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -272,6 +280,7 @@
     </div>
 </div>
 <!-- Details News Modal End -->
+
 <!-- Delete Warning Modal Start-->
 <div class="modal fade" id="deleteModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

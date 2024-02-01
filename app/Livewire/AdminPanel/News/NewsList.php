@@ -19,7 +19,7 @@ class NewsList extends Component
     use WithFileUploads;
     protected $paginationTheme = "bootstrap";
 
-    public $category_id, $image, $title, $news;
+    public $id, $category_id, $image, $current_image, $title, $news, $edit_news;
 
     public function add_news()
     {
@@ -30,6 +30,7 @@ class NewsList extends Component
             "news" => "required"
         ]);
 
+        // save new news
         $news = new News();
         $news->category_id = $this->category_id;
         $news->writer_id = session('admin')['id'];
@@ -40,7 +41,7 @@ class NewsList extends Component
         $news->image = $image;
         $news->save();
 
-        $this->reset(["category_id", "image", "title", "news"]);
+        $this->resetProperties();
 
         $this->dispatch(
             "bs-modal-hide",
@@ -52,6 +53,26 @@ class NewsList extends Component
             type: "success",
             title: "New News Added."
         );
+    }
+
+    // edit news
+    public function edit($id)
+    {
+        $news = News::find($id);
+        $this->id = $news->id;
+        $this->category_id = $news->category_id;
+        $this->current_image = $news->image;
+        $this->title = $news->title;
+        $this->edit_news = $news->news;
+        $this->dispatch(
+            "boot-ck-editor"
+        );
+    }
+
+    // update news
+    public function update($id)
+    {
+        dd($this->edit_news);
     }
 
     // change news publish or un-publish status
@@ -69,10 +90,16 @@ class NewsList extends Component
         );
     }
 
+    // reset public properties
+    public function resetProperties()
+    {
+        $this->reset(["category_id", "image", "title", "news", "id", "current_image", "edit_news"]);
+    }
+
     public function render()
     {
         $categories = Category::all();
-        $news_list = News::latest()->paginate(5);
+        $news_list = News::with('category')->with('writer')->latest()->paginate(5);
         return view('livewire.admin-panel.news.news-list')->with(compact('categories', 'news_list'));
     }
 }

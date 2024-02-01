@@ -20,144 +20,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Lorem ipsum dolor sit amet....</td>
-                        <td>Politics</td>
-                        <td>Rashed</td>
-                        <td>12/22/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm">
-                                <i class="bi bi-cloud-arrow-up"></i>
-                                Publish
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#detailNewsModal">
-                                <i class="bi bi-file-earmark-break"></i>
-                                Details
-                            </button>
-                            <button class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editNewsModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Lorem ipsum dolor sit amet....</td>
-                        <td>Technology</td>
-                        <td>Noyon</td>
-                        <td>12/22/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm">
-                                <i class="bi bi-cloud-arrow-down"></i>
-                                Un-Publish
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#detailNewsModal">
-                                <i class="bi bi-file-earmark-break"></i>
-                                Details
-                            </button>
-                            <button class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editNewsModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Lorem ipsum dolor sit amet....</td>
-                        <td>Seo</td>
-                        <td>Raihan</td>
-                        <td>12/22/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm">
-                                <i class="bi bi-cloud-arrow-up"></i>
-                                Publish
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#detailNewsModal">
-                                <i class="bi bi-file-earmark-break"></i>
-                                Details
-                            </button>
-                            <button class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editNewsModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Lorem ipsum dolor sit amet....</td>
-                        <td>Lifestyle</td>
-                        <td>Arafat</td>
-                        <td>12/22/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm">
-                                <i class="bi bi-cloud-arrow-down"></i>
-                                Un-Publish
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#detailNewsModal">
-                                <i class="bi bi-file-earmark-break"></i>
-                                Details
-                            </button>
-                            <button class="btn btn-primary btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#editNewsModal">
-                                <i class="bi bi-pencil-square"></i>
-                                Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal">
-                                <i class="bi bi-trash"></i>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
+                    @foreach ($news_list as $news)
+                        <tr>
+                            <td>{{ $news->id }}</td>
+                            <td>{{ substr($news->title, 0, 40) }}...</td>
+                            <td>{{ $news->category->name }}</td>
+                            <td>{{ $news->writer->name }}</td>
+                            <td>{{ date('d/m/Y', strtotime($news->created_at)) }}</td>
+                            <td>
+                                @if ($news->status)
+                                    <button wire:click="status({{ $news->id }})" type="button"
+                                        class="btn btn-primary btn-sm">
+                                        <i class="bi bi-cloud-arrow-up"></i>
+                                        Publish
+                                    </button>
+                                @else
+                                    <button wire:click="status({{ $news->id }})" type="button"
+                                        class="btn btn-warning btn-sm">
+                                        <i class="bi bi-cloud-arrow-down"></i>
+                                        Un-Publish
+                                    </button>
+                                @endif
+                            </td>
+                            <td>
+                                <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#detailNewsModal">
+                                    <i class="bi bi-file-earmark-break"></i>
+                                    Details
+                                </button>
+                                <button wire:click="edit({{ $news->id }})" class="btn btn-primary btn-sm m-1"
+                                    type="button" data-bs-toggle="modal" data-bs-target="#editNewsModal">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash"></i>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <ul class="pagination">
-                <li class="page-item">
-                    <a href="" class="page-link">Previous</a>
-                </li>
-                <li class="page-item active">
-                    <a href="" class="page-link">1</a>
-                </li>
-                <li class="page-item"><a href="" class="page-link">2</a></li>
-                <li class="page-item"><a href="" class="page-link">3</a></li>
-                <li class="page-item"><a href="" class="page-link">4</a></li>
-                <li class="page-item"><a href="" class="page-link">Next</a></li>
-            </ul>
+            {{-- Pagination Start --}}
+            {{ $news_list->links() }}
+            {{-- Pagination End --}}
         </div>
     </div>
     <!-- News Management Modal Start -->
-    @include("livewire.admin-panel.news.news-management");
+    @include('livewire.admin-panel.news.news-management')
     <!-- News Management Modal End -->
 </div>
 <!-- CK editor script initialize  -->
@@ -165,7 +77,17 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
     <script src="{{ asset('assets/js/handleCkeditor.js') }}"></script>
     <script>
-        handleCkeditor("#writeNews", "data-write-news", "news", "#saveButton");
+        handleCkeditor("#writeNews", "data-write-news", "news", "#saveButton")
+
+        window.addEventListener("boot-ck-editor", () => {
+            syncCkEditor()
+        })
+
+        function syncCkEditor() {
+            setTimeout(() => {
+                handleCkeditor("#editNews", "data-edit-news", "edit_news", "#updateButton")
+            }, 1000)
+        }
     </script>
 @endpush
 <!-- CK editor script end  -->
