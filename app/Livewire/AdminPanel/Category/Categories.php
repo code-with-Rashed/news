@@ -86,17 +86,29 @@ class Categories extends Component
 
     public function delete_category($id)
     {
-        $category = Category::find($id);
-        if (!is_null($category)) {
-            $category->delete();
-        }
-        $this->reset("id");
 
-        $this->dispatch(
-            "alert",
-            type: "success",
-            title: "Category Deleted."
-        );
+        $category = Category::with('news')->find($id);
+
+        if (!is_null($category)) {
+
+            // check category wise news exist or not. if not exist then delete category
+            if (empty($category->toArray()['news'])) {
+                $category->delete();
+                $this->dispatch(
+                    "alert",
+                    type: "success",
+                    title: "Category Deleted."
+                );
+            } else {
+                $this->dispatch(
+                    "alert",
+                    type: "error",
+                    title: "Sorry ! Category wise news exist."
+                );
+            }
+        }
+
+        $this->reset("id");
     }
 
     public function render()
