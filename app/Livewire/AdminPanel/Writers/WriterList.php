@@ -17,7 +17,7 @@ class WriterList extends Component
     use WithPagination;
     protected $paginationTheme = "bootstrap";
 
-    public $id, $name, $email, $roll, $password, $password_confirmation;
+    public $id, $name, $email, $role, $password, $password_confirmation;
 
     // add writer
     public function add_writer()
@@ -26,7 +26,7 @@ class WriterList extends Component
         $this->validate([
             "name" => "required|string|max:100",
             "email" => "required|email|max:100|unique:writers,email",
-            "roll" => "required|string|in:admin,moderator,writer",
+            "role" => "required|string|in:admin,moderator,writer",
             "password" => "required|min:5|max:100|confirmed",
             "password_confirmation" => "required|min:5|max:100|"
         ]);
@@ -34,11 +34,11 @@ class WriterList extends Component
         $writer = new Writer();
         $writer->name = $this->name;
         $writer->email = $this->email;
-        $writer->roll = $this->roll;
+        $writer->role = $this->role;
         $writer->password = Hash::make($this->password);
         $writer->save();
 
-        $this->reset(["name", "email", "roll", "password"]);
+        $this->reset(["name", "email", "role", "password"]);
 
         $this->dispatch(
             "bs-modal-hide",
@@ -59,7 +59,7 @@ class WriterList extends Component
         $this->id = $writer->id;
         $this->name = $writer->name;
         $this->email = $writer->email;
-        $this->roll = $writer->roll;
+        $this->role = $writer->role;
     }
 
     // update writer information
@@ -68,18 +68,18 @@ class WriterList extends Component
         $this->validate([
             "name" => "required|string|max:100",
             "email" => "required|email|max:100|unique:writers,email,$id",
-            "roll" => "required|string|in:admin,moderator,writer"
+            "role" => "required|string|in:admin,moderator,writer"
         ]);
 
         $writer = Writer::find($id);
         if (!is_null($writer)) {
             $writer->name = $this->name;
             $writer->email = $this->email;
-            $writer->roll = $this->roll;
+            $writer->role = $this->role;
             $writer->update();
         }
 
-        $this->reset(["name", "email", "roll"]);
+        $this->reset(["name", "email", "role"]);
 
         $this->dispatch(
             "bs-modal-hide",
@@ -135,7 +135,7 @@ class WriterList extends Component
     // render component
     public function render()
     {
-        $writers = Writer::paginate(4);
+        $writers = Writer::with('news')->paginate(4);
         return view('livewire.admin-panel.writers.writer-list')->with(compact("writers"));
     }
 }

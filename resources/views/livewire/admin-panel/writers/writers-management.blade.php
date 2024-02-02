@@ -28,14 +28,14 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label for="roll" class="fw-bold mb-2">Writer Role</label>
-                        <select id="roll" class="form-control" required wire:model="roll">
+                        <label for="role" class="fw-bold mb-2">Writer Role</label>
+                        <select id="role" class="form-control" required wire:model="role">
                             <option value="" selected>Select a Writer Roll</option>
                             <option value="admin">Admin</option>
                             <option value="moderator">Moderator</option>
                             <option value="writer">Writer</option>
                         </select>
-                        @error('roll')
+                        @error('role')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -93,13 +93,13 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label for="roll" class="fw-bold mb-2">Writer Roll</label>
-                        <select wire:model="roll" id="roll" class="form-control" required>
-                            <option @if ($roll == 'admin') selected @endif value="admin">Admin</option>
-                            <option @if ($roll == 'moderator') selected @endif value="moderator">Moderator</option>
-                            <option @if ($roll == 'writer') selected @endif value="writer">Writer</option>
+                        <label for="role" class="fw-bold mb-2">Writer Roll</label>
+                        <select wire:model="role" id="role" class="form-control" required>
+                            <option @if ($role == 'admin') selected @endif value="admin">Admin</option>
+                            <option @if ($role == 'moderator') selected @endif value="moderator">Moderator</option>
+                            <option @if ($role == 'writer') selected @endif value="writer">Writer</option>
                         </select>
-                        @error('roll')
+                        @error('role')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
