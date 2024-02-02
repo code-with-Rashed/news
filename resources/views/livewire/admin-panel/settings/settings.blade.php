@@ -29,7 +29,7 @@
                     <div class="h5 mb-2">Website Shutdown</div>
                     <div class="form-check form-switch d-flex justify-content-center">
                         <input type="checkbox" class="form-check-input" wire:click="shutdown({{ $settings->id }})"
-                            @if ($settings->shutdown == 0) checked title="Website is Running now." @else title="Website is Shutdown now." @endif>
+                            @if ($settings->shutdown) checked title="Website is Running now." @else title="Website is Shutdown now." @endif>
                     </div>
                 </div>
             </div>

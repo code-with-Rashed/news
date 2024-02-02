@@ -44,14 +44,14 @@ class MessageList extends Component
     {
         $message = Message::find($id);
         if (!is_null($message)) {
-            $status = ($message->status == 0) ? 1 : 0;
-            $message->status = "$status";
+            $status = $message->status ? 0 : 1;
+            $message->status = $status;
             $message->update();
 
             $this->dispatch(
                 "alert",
-                type: ($status == 1) ? "success" : "error",
-                title: ($status == 1) ? "Message is Readed." : "Message is not Readed."
+                type: $status ? "success" : "error",
+                title: $status ? "Message is Readed." : "Message is not Readed."
             );
         }
     }

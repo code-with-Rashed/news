@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("name", "100");
             $table->string("email", "100")->unique();
             $table->string("password",100);
-            $table->enum("status",[0,1])->default(1);
+            $table->boolean('status')->default(1)->comment("status 1 means writer is active, and 0 means writer is not active.");
             $table->timestamps();
         });
     }

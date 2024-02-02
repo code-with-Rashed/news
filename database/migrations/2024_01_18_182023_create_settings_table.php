@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string("logo",100);
-            $table->string("favicon",100);
+            $table->string("logo", 100);
+            $table->string("favicon", 100);
             $table->text("privacy_policy");
             $table->text("terms_conditions");
-            $table->enum("shutdown",[0,1])->default(0);
+            $table->boolean("shutdown")->default(1)->comment("shutdown 1 means news site is running, and 0 means news site is under maintenance.");
             $table->timestamps();
         });
     }

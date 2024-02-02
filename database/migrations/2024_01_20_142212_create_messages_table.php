@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("email",50);
             $table->string("subject",150);
             $table->string("message");
-            $table->enum("status",[0,1])->default(0);
+            $table->boolean('status')->default(0)->comment("status o means message is un-readed , and 1 means message is readed.");
             $table->timestamps();
         });
     }

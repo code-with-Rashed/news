@@ -120,14 +120,14 @@ class WriterList extends Component
     {
         $writer = Writer::find($id);
         if (!is_null($writer)) {
-            $status = ($writer->status == 0) ? 1 : 0;
-            $writer->status = "$status";
+            $status = $writer->status ? 0 : 1;
+            $writer->status = $status;
             $writer->update();
 
             $this->dispatch(
                 "alert",
-                type: ($status == 1) ? "success" : "error",
-                title: ($status == 1) ? "Writer is Active." : "writer is In-Active."
+                type: $status ? "success" : "error",
+                title: $status ? "Writer is Active." : "writer is In-Active."
             );
         }
     }

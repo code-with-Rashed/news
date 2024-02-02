@@ -83,14 +83,14 @@ class Settings extends Component
     {
         $settings = Setting::find($id);
         if (!is_null($settings)) {
-            $status = ($settings->shutdown == 0) ? 1 : 0;
-            $settings->shutdown = "$status";
+            $status = $settings->shutdown ? 0 : 1;
+            $settings->shutdown = $status;
             $settings->update();
 
             $this->dispatch(
                 "alert",
-                type: ($status == 0) ? "success" : "error",
-                title: ($status == 0) ? "Website is Running now" : "Website is Shutdown now"
+                type: $status ? "success" : "error",
+                title: $status ? "Website is Running now" : "Website is Shutdown now"
             );
         }
     }
