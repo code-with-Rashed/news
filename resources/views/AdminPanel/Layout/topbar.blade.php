@@ -8,12 +8,13 @@
         <div class="btn-group">
             <button type="button" class="btn btn-outline-dark btn-sm shadow-none dropdown-toggle"
                 data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                <img src="{{asset("storage/media/profile/user.jpg")}}" alt="profile-photo" width="30px" height="30px" class="rounded-circle" />
-                <strong>Rashed alam</strong>
+                <img src="{{ asset('storage/media/profile/' . session('admin')['photo']) }}" alt="profile-photo"
+                    width="30px" height="30px" class="rounded-circle" />
+                <strong>{{ session('admin')['name'] }}</strong>
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-end">
-                <li><a href="{{route("admin.profile")}}" class="dropdown-item">Profile</a></li>
-                <li><a href="{{route("admin.logout")}}" class="dropdown-item">Logout</a></li>
+                <li><a href="{{ route('admin.profile') }}" class="dropdown-item">Profile</a></li>
+                <li><a href="{{ route('admin.logout') }}" class="dropdown-item">Logout</a></li>
             </ul>
         </div>
     </div>
