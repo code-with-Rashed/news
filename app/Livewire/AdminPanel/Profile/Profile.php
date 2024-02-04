@@ -3,6 +3,7 @@
 namespace App\Livewire\AdminPanel\Profile;
 
 use App\Models\Writer;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -16,6 +17,7 @@ class Profile extends Component
 {
     use WithFileUploads;
     public $old_photo, $photo, $name, $email, $role;
+    public $old_password, $password, $password_confirmation;
 
     public function update_writer()
     {
@@ -51,6 +53,38 @@ class Profile extends Component
             type: "success",
             title: "Profile information successfuly updated."
         );
+    }
+
+    public function change_password()
+    {
+        $this->validate([
+            "old_password" => "required|max:100",
+            "password" => "required|min:5|max:100|confirmed",
+            "password_confirmation" => "required|min:5|max:100",
+        ]);
+
+        $id = session('admin')['id'];
+        $writer = Writer::find($id);
+
+        if (Hash::check($this->old_password, $writer->password)) {
+
+            $writer->password = Hash::make($this->password);
+            $writer->update();
+
+            $this->dispatch(
+                "alert",
+                type: "success",
+                title: "Password is updated."
+            );
+        } else {
+            $this->dispatch(
+                "alert",
+                type: "error",
+                title: "Old Password is Wrong!!"
+            );
+        }
+
+        $this->reset(['old_password', 'password', 'password_confirmation']);
     }
 
     public function render()

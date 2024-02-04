@@ -54,22 +54,31 @@
                 <!-- Profile Update Area End -->
                 <!-- Change Password Area Start -->
                 <div class="col-md-6">
-                    <form class="shadow rounded p-4">
+                    <form class="shadow rounded p-4" wire:submit="change_password()">
                         <p class="h5 fw-bold mb-3">Update Password</p>
                         <div class="form-group mb-3">
                             <label for="oldPassword" class="mb-1">Old Password</label>
-                            <input type="password" id="oldPassword" class="form-control"
-                                placeholder="Enter old password" maxlength="25" required />
+                            <input type="password" wire:model="old_password" id="oldPassword" class="form-control"
+                                placeholder="Enter old password" maxlength="100" required />
+                            @error('old_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label for="newPassword" class="mb-1">New Password</label>
-                            <input type="password" id="newPassword" class="form-control"
-                                placeholder="Enter new password" maxlength="25" required />
+                            <input type="password" wire:model="password" id="newPassword" class="form-control"
+                                placeholder="Enter new password" maxlength="100" required />
+                            @error('password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label for="confirmPassword" class="mb-1">Confirm Password</label>
-                            <input type="password" id="confirmPassword" class="form-control"
-                                placeholder="Enter confirm password" maxlength="25" required />
+                            <input type="password" wire:model="password_confirmation" id="confirmPassword"
+                                class="form-control" placeholder="Enter confirm password" maxlength="100" required />
+                            @error('password_confirmation')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Change Password
