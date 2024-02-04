@@ -27,7 +27,7 @@ class Login extends Component
                     "id" => $writer->id,
                     "name" => $writer->name,
                     "photo" => $writer->photo,
-                    "roll" => $writer->roll,
+                    "role" => $writer->role,
                 ]]);
                 return redirect()->route("admin.dashboard");
             }
