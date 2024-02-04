@@ -5,28 +5,46 @@
             <div class="row">
                 <!-- Profile Update Area Start -->
                 <div class="col-md-6">
-                    <form class="shadow rounded p-4">
-                        <div class="mb-4">
-                        <img src="{{asset("storage/media/profile/user.jpg")}}" alt="Profile-Photo" class="rounded-circle" width="100px" height="100px"/>
-                        </div>
+                    <form class="shadow rounded p-4" wire:submit="update_writer()">
+                        @if ($photo)
+                            <div class="mb-4">
+                                <img src="{{ $photo->temporaryUrl() }}" alt="Profile-Photo" class="rounded-circle"
+                                    width="100px" height="100px" />
+                            </div>
+                        @else
+                            <div class="mb-4">
+                                <img src="{{ asset("storage/media/profile/$old_photo") }}" alt="Profile-Photo"
+                                    class="rounded-circle" width="100px" height="100px" />
+                            </div>
+                        @endif
                         <div class="form-group mb-3">
                             <label for="photo" class="mb-1">Change Photo</label>
-                            <input type="file" id="photo" class="form-control" accept=".png,.jpeg,.jpg" />
+                            <input type="file" id="photo" class="form-control" accept="image/*"
+                                wire:model="photo" />
+                            @error('photo')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label for="name" class="mb-1">Name</label>
-                            <input type="text" id="name" class="form-control" value="Rashed alam" required
-                                maxlength="30" />
+                            <input type="text" id="name" class="form-control" maxlength="100"
+                                wire:model="name" />
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label for="email" class="mb-1">Email</label>
-                            <input type="email" id="email" class="form-control" value="example@mail.com" required
-                                maxlength="50" />
+                            <input type="email" id="email" class="form-control" maxlength="100"
+                                wire:model="email" />
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label for="role" class="mb-1">Role</label>
-                            <input type="text" id="role" class="form-control" value="Admin" required
-                                maxlength="10" readonly />
+                            <input type="text" id="role" class="form-control" required maxlength="10" readonly
+                                value="{{ $role }}" />
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Update
