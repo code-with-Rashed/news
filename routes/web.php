@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-
+use App\Livewire\VisitorPanel\Home;
+use App\Livewire\VisitorPanel\ReadNews;
+use App\Livewire\VisitorPanel\Contact;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/',Home::class);
+Route::get('/read/{id}',ReadNews::class);
+Route::get('/contact-us',Contact::class);
