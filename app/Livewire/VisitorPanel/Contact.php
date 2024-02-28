@@ -4,9 +4,12 @@ namespace App\Livewire\VisitorPanel;
 
 use App\Models\Message;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('VisitorPanel.index')]
+#[Title('Contact Us')]
+
 class Contact extends Component
 {
     public $name, $email, $subject, $message;

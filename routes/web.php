@@ -17,6 +17,6 @@ use App\Livewire\VisitorPanel\Contact;
 |
 */
 
-Route::get('/',Home::class);
+Route::get('/',Home::class)->name('home-page');
 Route::get('/read/{id}',ReadNews::class);
-Route::get('/contact-us',Contact::class);
+Route::get('/contact-us',Contact::class)->name('contact-page');
