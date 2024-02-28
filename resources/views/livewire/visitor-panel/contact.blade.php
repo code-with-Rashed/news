@@ -3,24 +3,40 @@
     <div class="container my-5">
         <div class="row">
             <!-- Form area start -->
-            <div class="col-md-5">
-                <form class="shadow-sm rounded p-4">
+            <div class="col-md-5 mb-3">
+                <form class="shadow-sm rounded p-4" wire:submit="contact_us()">
                     <h4 class="text-center fw-bold mb-3">Contact US</h4>
                     <div class="form-group mb-2">
                         <label for="name" class="mb-2">Name</label>
-                        <input type="text" id="name" class="form-control" maxlength="40" required />
+                        <input type="text" id="name" class="form-control" maxlength="40" required
+                            wire:model="name" />
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mb-2">
                         <label for="email" class="mb-2">Email</label>
-                        <input type="email" id="email" class="form-control" maxlength="50" required />
+                        <input type="email" id="email" class="form-control" maxlength="50" required
+                            wire:model="email" />
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mb-2">
                         <label for="subject" class="mb-2">Subject</label>
-                        <textarea id="subject" class="form-control" maxlength="150" required cols="30" rows="3"></textarea>
+                        <textarea id="subject" class="form-control" maxlength="150" required cols="30" rows="2"
+                            wire:model="subject"></textarea>
+                        @error('subject')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mb-2">
                         <label for="message" class="mb-2">Message</label>
-                        <textarea id="message" class="form-control" maxlength="250" required cols="30" rows="6"></textarea>
+                        <textarea id="message" class="form-control" maxlength="250" required cols="30" rows="6"
+                            wire:model="message"></textarea>
+                        @error('message')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Send</button>
                 </form>
@@ -65,3 +81,7 @@
     </div>
     <!-- Contact area end -->
 </div>
+@push('sweet_alert')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/js/sweetAlert.js') }}"></script>
+@endpush
