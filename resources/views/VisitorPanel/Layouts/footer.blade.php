@@ -1,3 +1,6 @@
+@php
+    $categories = new \App\Livewire\VisitorPanel\Categories();
+@endphp
 <!-- footer area start -->
 <footer class="bg-dark p-5 text-white">
     <div class="container">
@@ -6,28 +9,19 @@
                 <p>CATEGORYES</p>
                 <hr />
                 <ul class="list-unstyled">
-                    <a href="category.html" class="text-decoration-none text-white">
-                        <li class="mb-1">International</li>
-                    </a>
-                    <a href="category.html" class="text-decoration-none text-white">
-                        <li class="mb-1">Travel</li>
-                    </a>
-                    <a href="category.html" class="text-decoration-none text-white">
-                        <li class="mb-1">Sports</li>
-                    </a>
-                    <a href="category.html" class="text-decoration-none text-white">
-                        <li class="mb-1">Lifestyle</li>
-                    </a>
-                    <a href="category.html" class="text-decoration-none text-white">
-                        <li class="mb-1">Politics</li>
-                    </a>
+                    @foreach ($categories->all_category() as $category)
+                        <a href="category.html" class="text-decoration-none text-white">
+                            <li class="mb-1">{{ $category->name }}</li>
+                        </a>
+                    @endforeach
+
                 </ul>
             </div>
             <div class="col-md-4">
                 <p>PAGES</p>
                 <hr />
                 <ul class="list-unstyled">
-                    <a href="contact.html" class="text-decoration-none text-white">
+                    <a href="{{ route('contact-page') }}" class="text-decoration-none text-white">
                         <li class="mb-1">Contact Us</li>
                     </a>
                     <a href="#" class="text-decoration-none text-white">
@@ -69,7 +63,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
 </script>
-@stack("sweet_alert")
+@stack('sweet_alert')
 </body>
 
 </html>
