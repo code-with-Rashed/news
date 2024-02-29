@@ -144,100 +144,10 @@
     </div>
     <!-- Recent news area end -->
 
-    <!-- International news area start -->
-    <div class="container mt-5">
-        <div class="row">
-            <p class="h3 mb-2">INTERNATIONAL</p>
-            <hr />
-            <div class="col-md-4">
-                <a href="read.html" class="d-block">
-                    <img src="https://media.gettyimages.com/id/1811209720/photo/sunderland-england-nissan-car-production-continues-ahead-of-an-announcement-by-president-and.jpg?s=612x612&w=0&k=20&c=o6NEp614VevjfVBKVQKNULayor7tv4m7aFDkRxxBNi8="
-                        alt="news-image" class="rounded img-fluid" />
-                </a>
-                <a href="read.html" class="text-decoration-none d-block text-dark">
-                    <p class="h5 mt-2">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit,
-                        deleniti!
-                    </p>
-                </a>
-                <span title="Release Date" class="d-block my-2"><i class="bi bi-calendar3"></i> 20/08/2023</span>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione
-                    deserunt nulla numquam minus aliquam esse quidem omnis totam.
-                    Assumenda ratione autem dolorem ad. Nesciunt, facilis! Libero
-                    obcaecati veniam consectetur beatae! Mollitia incidunt quos
-                    recusandae, nihil delectus magnam dicta atque blanditiis vel nam sit
-                    esse ab et dolorem perferendis saepe eos
-                    <a href="read.html" class="text-primary text-decoration-none">...Read more</a>
-                </p>
-            </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <a href="read.html" class="d-block">
-                            <img src="https://media.gettyimages.com/id/1811116671/photo/sunderland-england-prime-minister-rishi-sunak-and-chancellor-of-the-exchequer-jeremy-hunt.jpg?s=612x612&w=0&k=20&c=cacSamiOYVQhGmmsaPm2JHFIdcM--oRA35rAJXlSPf4="
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark mt-1 d-block">
-                            <p>Lorem ipsum dolor Lorem, ipsum dolor. sit amet...</p>
-                        </a>
-                        <span title="Release Date fs-4"><i class="bi bi-calendar3"></i> 20/08/2023</span>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <a href="read.html" class="d-block">
-                            <img src="https://media.gettyimages.com/id/1800008405/photo/muslim-men-are-participating-in-friday-prayers-at-the-ikhwanul-muslimin-mosque-on-swadaya.jpg?s=612x612&w=0&k=20&c=d_NbqucTm1kTn3bDzM63VJOoTRpIEMlUhrYghfOmY1k="
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark mt-1 d-block">
-                            <p>Lorem ipsum dolor Lorem, ipsum dolor. sit amet...</p>
-                        </a>
-                        <span title="Release Date fs-4"><i class="bi bi-calendar3"></i> 20/08/2023</span>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <a href="read.html" class="d-block">
-                            <img src="https://media.gettyimages.com/id/1810826957/photo/shenyang-china-chinese-honour-guards-march-during-a-burial-ceremony-for-the-remains-of-25.jpg?s=612x612&w=0&k=20&c=hl5gctjIn-xFYt1q-ShgBCleHwHtbUHWGghdViaBhmc="
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark mt-1 d-block">
-                            <p>Lorem ipsum dolor Lorem, ipsum dolor. sit amet...</p>
-                        </a>
-                        <span title="Release Date fs-4"><i class="bi bi-calendar3"></i> 20/08/2023</span>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <a href="read.html" class="d-block">
-                            <img src="https://media.gettyimages.com/id/1798273214/photo/argentinas-vice-president-elect-victoria-villarruel-is-leaving-congress-after-meeting-with.jpg?s=612x612&w=0&k=20&c=o9z00Wis6j12CEaPoCWFlcnrTA59sD9JYCkapTQDEdw="
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark mt-1 d-block">
-                            <p>Lorem ipsum dolor Lorem, ipsum dolor. sit amet...</p>
-                        </a>
-                        <span title="Release Date fs-4"><i class="bi bi-calendar3"></i> 20/08/2023</span>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <a href="read.html" class="d-block">
-                            <img src="https://media.gettyimages.com/id/1809308214/photo/london-england-nadine-coyle-kimberley-walsh-nicola-roberts-and-cheryl-at-bbc-radio-2-to.jpg?s=612x612&w=0&k=20&c=tSZ518ndiepF9ojofCC3SZNz55DYlHK91GKSjGcYzPI="
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark mt-1 d-block">
-                            <p>Lorem ipsum dolor Lorem, ipsum dolor. sit amet...</p>
-                        </a>
-                        <span title="Release Date fs-4"><i class="bi bi-calendar3"></i> 20/08/2023</span>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <a href="read.html" class="d-block">
-                            <img src="https://media.gettyimages.com/id/1800481661/photo/jakarta-indonesia-hector-fort-of-spain-looks-to-bring-the-ball-down-during-fifa-u-17-world.jpg?s=612x612&w=0&k=20&c=BLyWPpZQTbW1b7EDxWQF4rwfOGTF8nQQ3BgFrOGFvEg="
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark mt-1 d-block">
-                            <p>Lorem ipsum dolor Lorem, ipsum dolor. sit amet...</p>
-                        </a>
-                        <span title="Release Date fs-4"><i class="bi bi-calendar3"></i> 20/08/2023</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- International news area end -->
+    {{-- Section One Start  --}}
+    <x-section-one />
+    {{-- Section One End  --}}
+
 
     <!-- Politics news area start -->
     <div class="container mt-5">
