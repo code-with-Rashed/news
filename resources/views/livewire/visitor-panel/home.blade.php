@@ -152,84 +152,21 @@
     <x-section-two />
     {{-- Section Two End  --}}
 
-    <!-- Travel , Latest & Lifestyle news area start -->
     <div class="container my-5">
         <div class="row">
             <div class="col-md-7">
                 {{-- Section Three Start  --}}
                 <x-section-three />
                 {{-- Section Three End  --}}
-                <div class="row mt-4">
-                    <p class="h3 mb-2">LIFESTYLE</p>
-                    <hr />
-                    <div class="col-md-6">
-                        <a href="read.html" class="d-block">
-                            <img src="https://images.pexels.com/photos/1472887/pexels-photo-1472887.jpeg?auto=compress&cs=tinysrgb&w=600"
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark my-2 d-block">
-                            <p class="h5">
-                                Lorem ipsum dolor sit amet adipisicing elit. Lorem, ipsum.
-                            </p>
-                        </a>
-                        <span><i class="bi bi-calendar3"></i> 23/09/2024</span>
-                        <p class="mt-1">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt,
-                            ipsa ut nulla recusandae architecto eum fuga odit s<a href="read.html"
-                                class="text-decoration-none text-primary">...Read More</a>
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-6 mb-2">
-                                <a href="read.html" class="text-decoration-none text-dark d-block">
-                                    <img src="https://media.istockphoto.com/id/1389754715/photo/cropped-shot-of-an-affectionate-young-family-of-three-taking-a-walk-on-the-beach.jpg?b=1&s=612x612&w=0&k=20&c=OwJI8MU1n6bcPPibe3z7VnQSvuEKt7h7fZvEocBaRSI="
-                                        alt="news-image" class="img-fluid rounded" />
-                                </a>
-                                <a href="read.html" class="text-decoration-none text-dark d-block">
-                                    <p class="fw-bold mb-1">Lorem ipsum dolor sit, amet.</p>
-                                </a>
-                                <span><i class="bi bi-calendar3"></i> 23/09/2024</span>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <a href="read.html" class="text-decoration-none text-dark d-block">
-                                    <img src="https://images.pexels.com/photos/920384/pexels-photo-920384.jpeg?auto=compress&cs=tinysrgb&w=600"
-                                        alt="news-image" class="img-fluid rounded" />
-                                </a>
-                                <a href="read.html" class="text-decoration-none text-dark d-block">
-                                    <p class="fw-bold mb-1">Lorem ipsum dolor sit, amet.</p>
-                                </a>
-                                <span><i class="bi bi-calendar3"></i> 23/09/2024</span>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <a href="read.html" class="text-decoration-none text-dark d-block">
-                                    <img src="https://images.pexels.com/photos/302083/pexels-photo-302083.jpeg?auto=compress&cs=tinysrgb&w=600"
-                                        alt="news-image" class="img-fluid rounded" />
-                                </a>
-                                <a href="read.html" class="text-decoration-none text-dark d-block">
-                                    <p class="fw-bold mb-1">Lorem ipsum dolor sit, amet.</p>
-                                </a>
-                                <span><i class="bi bi-calendar3"></i> 23/09/2024</span>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <a href="read.html" class="text-decoration-none text-dark d-block">
-                                    <img src="https://images.pexels.com/photos/2247179/pexels-photo-2247179.jpeg?auto=compress&cs=tinysrgb&w=600"
-                                        alt="news-image" class="img-fluid rounded" />
-                                </a>
-                                <a href="read.html" class="text-decoration-none text-dark d-block">
-                                    <p class="fw-bold mb-1">Lorem ipsum dolor sit, amet.</p>
-                                </a>
-                                <span><i class="bi bi-calendar3"></i> 23/09/2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                {{-- Section Four Start  --}}
+                <x-section-four />
+                {{-- Section Four End  --}}
             </div>
             <!-- Latest news area start -->
             <x-latest-news />
             <!-- Latest news area end -->
         </div>
     </div>
-    <!-- Travel , Latest & Lifestyle news area end -->
 
 </div>
