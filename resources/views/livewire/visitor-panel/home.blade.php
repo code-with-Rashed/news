@@ -156,46 +156,9 @@
     <div class="container my-5">
         <div class="row">
             <div class="col-md-7">
-                <p class="h3 mb-2">TRAVEL</p>
-                <hr />
-                <div class="row">
-                    <div class="col-md-6">
-                        <a href="read.html" class="d-block">
-                            <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=600"
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark d-block">
-                            <p class="h5 mt-2">
-                                Lorem ipsum dolor sit amet adipisicing elit. Recusandae.
-                            </p>
-                        </a>
-                        <span class="my-3"><i class="bi bi-calendar3"></i> 12/11/2023</span>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                            sit, architecto fugit ea nam debitis tempora? Recusandae quos
-                            doloribus porro ea ducimus
-                            <a href="read.html" class="text-primary text-decoration-none">...Read More</a>
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="read.html" class="d-block">
-                            <img src="https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=600"
-                                alt="news-image" class="img-fluid rounded" />
-                        </a>
-                        <a href="read.html" class="text-decoration-none text-dark d-block">
-                            <p class="h5 mt-2">
-                                Lorem ipsum dolor sit amet adipisicing elit. Recusandae.
-                            </p>
-                        </a>
-                        <span class="my-3"><i class="bi bi-calendar3"></i> 12/11/2023</span>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                            sit, architecto fugit ea nam debitis tempora? Recusandae quos
-                            doloribus porro ea ducimus
-                            <a href="read.html" class="text-primary text-decoration-none">...Read More</a>
-                        </p>
-                    </div>
-                </div>
+                {{-- Section Three Start  --}}
+                <x-section-three />
+                {{-- Section Three End  --}}
                 <div class="row mt-4">
                     <p class="h3 mb-2">LIFESTYLE</p>
                     <hr />
