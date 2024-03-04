@@ -19,6 +19,6 @@ class ReadNews extends Component
     {
         $read_news = News::with('category')->find($this->id);
         $related_news = News::select(['id', 'category_id', 'title', 'image', 'created_at'])->where('category_id', $read_news->category_id)->orderByDesc('id')->paginate(5);
-        return view('livewire.visitor-panel.read-news')->with(compact('read_news', 'related_news'));
+        return view('livewire.visitor-panel.read-news')->with(compact('read_news', 'related_news'))->title($read_news->title);
     }
 }
