@@ -6,13 +6,13 @@
         @foreach ($latest_news as $news)
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <a href="read.html" class="d-block">
+                    <a href="<?php echo url('/read/' . $news->id); ?>" class="d-block">
                         <img src="{{ asset('storage/media/news/' . $news->image) }}" alt="lates-newa-image"
                             class="img-fluid rounded" loading="lazy" />
                     </a>
                 </div>
                 <div class="col-md-8">
-                    <a href="read.html" class="text-decoration-none text-dark">
+                    <a href="<?php echo url('/read/' . $news->id); ?>" class="text-decoration-none text-dark">
                         <p class="h6">
                             {{ $news->title }}
                         </p>
