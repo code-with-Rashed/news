@@ -27,7 +27,7 @@
                     <a href="#" class="text-decoration-none text-white">
                         <li class="mb-1">About Us</li>
                     </a>
-                    <a href="#" class="text-decoration-none text-white">
+                    <a href="{{ route('terms-conditions') }}" class="text-decoration-none text-white">
                         <li class="mb-1">Terms of Use</li>
                     </a>
                     <a href="#" class="text-decoration-none text-white">
