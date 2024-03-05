@@ -24,13 +24,10 @@
                     <a href="{{ route('contact-page') }}" class="text-decoration-none text-white">
                         <li class="mb-1">Contact Us</li>
                     </a>
-                    <a href="#" class="text-decoration-none text-white">
-                        <li class="mb-1">About Us</li>
-                    </a>
                     <a href="{{ route('terms-conditions') }}" class="text-decoration-none text-white">
                         <li class="mb-1">Terms of Use</li>
                     </a>
-                    <a href="#" class="text-decoration-none text-white">
+                    <a href="{{ route('privacy-policy') }}" class="text-decoration-none text-white">
                         <li class="mb-1">Privacy Policy</li>
                     </a>
                 </ul>
