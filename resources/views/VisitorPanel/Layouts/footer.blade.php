@@ -10,7 +10,7 @@
                 <hr />
                 <ul class="list-unstyled">
                     @foreach ($categories->all_category() as $category)
-                        <a href="category.html" class="text-decoration-none text-white">
+                        <a href="{{ url('/category/' . $category->id) }}" class="text-decoration-none text-white">
                             <li class="mb-1">{{ $category->name }}</li>
                         </a>
                     @endforeach

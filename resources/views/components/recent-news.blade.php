@@ -21,7 +21,8 @@
                                          class="d-block w-100 rounded" alt="banner" loading="lazy" />
                                  </a>
                                  <div class="carousel-caption d-none d-md-block">
-                                     <a href="category.html" class="text-decoration-none text-white fw-bold">
+                                     <a href="{{ url('/category/' . $news['category_id']) }}"
+                                         class="text-decoration-none text-white fw-bold">
                                          <h5>{{ $news['category_name'] }}</h5>
                                      </a>
                                      <a href="<?php echo url('/read/' . $news['id']); ?>" class="text-decoration-none text-white">
@@ -60,7 +61,8 @@
                                  <a href="<?php echo url('/read/' . $news['id']); ?>" class="text-decoration-none text-dark">
                                      <p class="h6">{{ $news['title'] }}</p>
                                  </a>
-                                 <a href="category.html" class="text-decoration-none text-dark">
+                                 <a href="{{ url('/category/' . $news['category_id']) }}"
+                                     class="text-decoration-none text-dark">
                                      <p title="Category"><i class="bi bi-tag"></i>{{ $news['category_name'] }}</p>
                                  </a>
                                  <p title="Release Date">

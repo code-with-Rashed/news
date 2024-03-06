@@ -17,7 +17,7 @@
                             {{ $news->title }}
                         </p>
                     </a>
-                    <a href="category.html" class="text-decoration-none text-dark">
+                    <a href="<?php echo url('/category/' . $news->category_id); ?>" class="text-decoration-none text-dark">
                         <span title="Category"><i class="bi bi-tag"></i>{{ $news->category->name }}</span>
                     </a>
                     <span class="d-block mt-1"><i

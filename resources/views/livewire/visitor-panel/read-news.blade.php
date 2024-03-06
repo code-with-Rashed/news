@@ -135,7 +135,8 @@
                                         {{ $news->title }}
                                     </p>
                                 </a>
-                                <a href="category.html" class="text-decoration-none text-dark">
+                                <a href="{{ url('/category/' . $news->category_id) }}"
+                                    class="text-decoration-none text-dark">
                                     <span title="Category"><i
                                             class="bi bi-tag"></i>{{ $read_news->category->name }}</span>
                                 </a>
