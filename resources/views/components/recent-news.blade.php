@@ -52,13 +52,13 @@
                      @if ($loop->index > 1 && $loop->index < 5)
                          <div class="row mb-3">
                              <div class="col-md-5">
-                                 <a href="<?php echo url('/read/' . $news['id']); ?>" class="d-block">
+                                 <a href="{{ url('/read/' . $news['id']) }}" class="d-block">
                                      <img src="{{ asset('storage/media/news/' . $news['image']) }}" alt="img"
                                          class="w-100 me-2 rounded" loading="lazy" />
                                  </a>
                              </div>
                              <div class="col-md-7">
-                                 <a href="<?php echo url('/read/' . $news['id']); ?>" class="text-decoration-none text-dark">
+                                 <a href="{{ url('/read/' . $news['id']) }}" class="text-decoration-none text-dark">
                                      <p class="h6">{{ $news['title'] }}</p>
                                  </a>
                                  <a href="{{ url('/category/' . $news['category_id']) }}"
@@ -66,7 +66,8 @@
                                      <p title="Category"><i class="bi bi-tag"></i>{{ $news['category_name'] }}</p>
                                  </a>
                                  <p title="Release Date">
-                                     <i class="bi bi-calendar3"></i> {{ date('d/m/Y', strtotime($news['created_at'])) }}
+                                     <i class="bi bi-calendar3"></i>
+                                     {{ date('d/m/Y', strtotime($news['created_at'])) }}
                                  </p>
                              </div>
                          </div>

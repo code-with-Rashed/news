@@ -3,11 +3,11 @@
 <div class="row">
     @foreach ($section_three_news as $news)
         <div class="col-md-6">
-            <a href="<?php echo url('/read/' . $news->id); ?>" class="d-block">
+            <a href="{{ url('/read/' . $news->id) }}" class="d-block">
                 <img src="{{ asset('storage/media/news/' . $news->image) }}" alt="news-image" class="img-fluid rounded"
                     loading="lazy" />
             </a>
-            <a href="<?php echo url('/read/' . $news->id); ?>" class="text-decoration-none text-dark d-block">
+            <a href="{{ url('/read/' . $news->id) }}" class="text-decoration-none text-dark d-block">
                 <p class="h5 mt-2">{{ $news->title }}</p>
             </a>
             <span class="my-3"><i class="bi bi-calendar3"></i> {{ date('d/m/Y', strtotime($news->crated_at)) }}</span>
