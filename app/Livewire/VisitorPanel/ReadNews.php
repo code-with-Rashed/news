@@ -3,6 +3,7 @@
 namespace App\Livewire\VisitorPanel;
 
 use App\Models\News;
+use App\Models\NewsSummary;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -17,6 +18,21 @@ class ReadNews extends Component
         $this->read_news = News::with('category')->find($this->id);
         if (is_null($this->read_news)) {
             return redirect()->route('home-page');
+        }
+        $this->increment_views();
+    }
+
+    public function increment_views()
+    {
+        $news_summaries = NewsSummary::where('news_id', $this->id)->get();
+        if (count($news_summaries)) {
+            $total_views = $news_summaries[0]->total_views + 1;
+            NewsSummary::where('news_id', $this->id)->update(['total_views' => $total_views]);
+        } else {
+            $news_summaries = new NewsSummary();
+            $news_summaries->news_id = $this->id;
+            $news_summaries->total_views = 1;
+            $news_summaries->save();
         }
     }
 
