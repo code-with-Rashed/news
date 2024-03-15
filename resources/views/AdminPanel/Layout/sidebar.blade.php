@@ -51,6 +51,13 @@
                     </a>
                 </li>
                 <li class="list-group-item">
+                    <a href="{{ route('admin.address') }}"
+                        class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
+                        <i class="bi bi-geo-alt fs-5 me-1"></i>
+                        Address
+                    </a>
+                </li>
+                <li class="list-group-item">
                     <a href="{{ route('admin.privacy-policy') }}"
                         class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
                         <i class="bi bi-shield-check fs-5 me-1"></i>

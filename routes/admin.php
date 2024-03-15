@@ -10,6 +10,7 @@ use App\Livewire\AdminPanel\News\NewsList;
 use App\Livewire\AdminPanel\Messages\MessageList;
 use App\Livewire\AdminPanel\Writers\WriterList;
 use App\Livewire\AdminPanel\Settings\Settings;
+use App\Livewire\AdminPanel\Address\Address;
 use App\Livewire\AdminPanel\Profile\Profile;
 use App\Livewire\AdminPanel\PrivacyPolicy\PrivacyPolicy;
 use App\Livewire\AdminPanel\TermsConditions\TermsConditions;
@@ -24,6 +25,7 @@ Route::middleware("access_admin_pages")->group(function () {
     Route::get("message-list", MessageList::class)->name("message-list");
     Route::get("writer-list", WriterList::class)->name("writer-list");
     Route::get("settings", Settings::class)->name("settings");
+    Route::get("address", Address::class)->name("address");
     Route::get("profile", Profile::class)->name("profile");
     Route::get("privacy-policy", PrivacyPolicy::class)->name("privacy-policy");
     Route::get("terms-conditions", TermsConditions::class)->name("terms-conditions");

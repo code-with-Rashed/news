@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             CategorySeeder::class,
             WriterSeeder::class,
+            Address::class,
         ]);
 
         // Create Fake Messages
