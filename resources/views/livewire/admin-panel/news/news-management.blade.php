@@ -137,7 +137,7 @@
 <!-- Edit News Modal End -->
 
 <!-- Details News Modal Start -->
-<div class="modal fade" id="detailNewsModal" data-bs-backdrop="static" data-bs-keyboard="false"
+<div wire:ignore.self class="modal fade" id="detailNewsModal" data-bs-backdrop="static" data-bs-keyboard="false"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
@@ -145,15 +145,15 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">
                     Details News
                 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    wire:click="resetProperties()"></button>
             </div>
             <div class="modal-body">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error rem
-                    blanditiis quibusdam.
+                    {{ $title }}
                 </p>
-                <img src="https://img.freepik.com/free-photo/soccer-players-action-professional-stadium_654080-1130.jpg?w=1060&t=st=1700705299~exp=1700705899~hmac=7cfd061d9da698def163afc793a94d5b596070a0ff14d2d2eb153d53b4bd5ab9"
-                    alt="news image" class="w-100 rounded" height="400px" style="object-fit: cover" />
+                <img src="{{ asset('storage/media/news/' . $details_image) }}" alt="news image"
+                    class="w-100 rounded" height="400px" style="object-fit: cover" />
                 <div class="mt-3 d-flex justify-content-between">
                     <div>
                         <button type="button" class="btn btn-sm btn-primary" title="Likes">
@@ -174,41 +174,15 @@
                         </button>
                     </div>
                     <div class="ms-auto">
-                        <span title="Category" class="me-2"><i class="bi bi-tag"></i>Sports</span>
-                        <span title="Author Name" class="me-2"><i class="bi bi-pencil"></i> Rashed alam</span>
-                        <span title="Release Date"><i class="bi bi-calendar3"></i> 10/08/2023</span>
+                        <span title="Category" class="me-2"><i class="bi bi-tag"></i> {{ $category_name }}</span>
+                        <span title="Author Name" class="me-2"><i class="bi bi-pencil"></i>
+                            {{ $writer_name }}</span>
+                        <span title="Release Date"><i class="bi bi-calendar3"></i>
+                            {{ date('d/m/Y', strtotime($created_at)) }}</span>
                     </div>
                 </div>
                 <div class="my-4">
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum
-                        hic rem quidem omnis rerum alias ipsam consequatur, beatae quae
-                        animi.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laudantium tenetur commodi sapiente sit cupiditate ullam at
-                        aperiam itaque eius id quam laboriosam accusantium, cum ratione
-                        enim dolore fugit, libero, qui quis mollitia ab quidem sequi!
-                        Provident, reiciendis ullam? Alias ab maiores, aliquam vitae
-                        debitis fuga eos obcaecati consequatur molestiae corrupti.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                        officiis magni voluptas tempore quod voluptatibus vitae ratione
-                        totam incidunt. Vitae fuga recusandae praesentium,
-                        necessitatibus ipsum ducimus officia. Et cum ex eveniet
-                        voluptate non dolore doloribus, aperiam perferendis tempore
-                        maiores? Cum optio provident unde dolorum laborum ullam quasi,
-                        perspiciatis, iure quibusdam dolores exercitationem praesentium,
-                        rerum adipisci? Voluptates in quas reiciendis, eum, blanditiis
-                        debitis dolor iusto nostrum aspernatur similique veniam! Sit
-                        porro autem accusantium expedita, quidem molestias rerum
-                        voluptatibus aliquid quas, officia eaque culpa perferendis
-                        dolorum possimus sunt sapiente accusamus quia dignissimos
-                        laborum aut dolore minima quod. Enim cum labore temporibus
-                        numquam!
-                    </p>
+                    {!! $details_news !!}
                 </div>
                 <hr />
                 <!-- Comments -->

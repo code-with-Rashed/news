@@ -20,7 +20,7 @@ class NewsList extends Component
     use WithFileUploads;
     protected $paginationTheme = "bootstrap";
 
-    public $id, $category_id, $image, $current_image, $title, $news, $edit_news;
+    public $id, $category_id, $image, $current_image, $title, $news, $edit_news, $details_image, $details_news, $category_name, $writer_name, $created_at;
 
     public function add_news()
     {
@@ -135,7 +135,19 @@ class NewsList extends Component
     // reset public properties
     public function resetProperties()
     {
-        $this->reset(["category_id", "image", "title", "news", "id", "current_image", "edit_news"]);
+        $this->reset(["category_id", "image", "title", "news", "id", "current_image", "edit_news", "details_image", "details_news", "category_name", "writer_name", "created_at"]);
+    }
+
+    // details news
+    public function details($id)
+    {
+        $news = News::with('category')->with('writer')->find($id);
+        $this->title = $news->title;
+        $this->details_image = $news->image;
+        $this->details_news = $news->news;
+        $this->created_at = $news->created_at;
+        $this->category_name = $news->category->name;
+        $this->writer_name = $news->writer->name;
     }
 
     public function render()

@@ -43,7 +43,7 @@
                                 @endif
                             </td>
                             <td>
-                                <button class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
+                                <button wire:click="details({{ $news->id }})" class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
                                     data-bs-target="#detailNewsModal">
                                     <i class="bi bi-file-earmark-break"></i>
                                     Details
