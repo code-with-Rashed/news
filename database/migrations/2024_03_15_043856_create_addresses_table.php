@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('facebook');
             $table->string('twitter');
-            $table->string('linkdin');
+            $table->string('linkedin');
             $table->text('map');
             $table->timestamps();
         });
