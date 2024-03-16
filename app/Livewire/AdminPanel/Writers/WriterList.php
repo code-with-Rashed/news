@@ -17,7 +17,7 @@ class WriterList extends Component
     use WithPagination;
     protected $paginationTheme = "bootstrap";
 
-    public $id, $name, $email, $role, $password, $password_confirmation;
+    public $id, $name, $email, $role, $password, $password_confirmation, $writer_details;
 
     // add writer
     public function add_writer()
@@ -130,6 +130,13 @@ class WriterList extends Component
                 title: $status ? "Writer is Active." : "writer is In-Active."
             );
         }
+    }
+
+    // writer details
+    public function details($id)
+    {
+        $writer = Writer::with('news')->find($id);
+        $this->writer_details = $writer;
     }
 
     // render component
