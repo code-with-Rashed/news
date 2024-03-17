@@ -2,7 +2,7 @@
     $categories = new \App\Livewire\VisitorPanel\Categories();
 @endphp
 <!-- footer area start -->
-<footer class="bg-dark p-5 text-white">
+<footer class="bg-dark p-5 text-white d-print-none">
     <div class="container">
         <div class="row">
             <div class="col-md-4">

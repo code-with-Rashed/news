@@ -17,7 +17,7 @@
 
 <body>
     <!-- navbar start -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-4 d-print-none">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
                 <img src="{{ asset('storage/media/logo/' . $settings->logo()) }}" alt="logo" width="120px" />

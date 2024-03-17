@@ -12,7 +12,7 @@
                         class="rounded w-100" height="400px" loading="lazy" />
                 </div>
                 <!-- action area start -->
-                <div class="row">
+                <div class="row d-print-none">
                     <div class="col-md-6 mb-3 mt-2">
                         <div class="d-flex justify-content-evenly">
                             <div>
@@ -40,7 +40,7 @@
                                 </button>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-sm btn-primary" title="print">
+                                <button onclick="window.print()" type="button" class="btn btn-sm btn-primary" title="print">
                                     <i class="bi bi-printer"></i>
                                 </button>
                             </div>
@@ -61,7 +61,7 @@
                 <!-- news area end -->
                 <hr />
                 <!-- comments area start-->
-                <div class="mb-4 accordion shadow-sm" id="accordionExample">
+                <div class="mb-4 accordion shadow-sm d-print-none" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -117,7 +117,7 @@
                 <!-- comments area end-->
             </div>
             <!-- Related news area start -->
-            <div class="col-md-5">
+            <div class="col-md-5 d-print-none">
                 <p class="h3 mb-2">RELATED NEWS</p>
                 <hr />
                 <div class="shadow-sm p-2">
