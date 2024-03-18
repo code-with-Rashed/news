@@ -38,7 +38,10 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+                        Send
+                    </button>
                 </form>
             </div>
             <!-- Form area end -->

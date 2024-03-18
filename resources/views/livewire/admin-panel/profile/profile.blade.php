@@ -47,6 +47,7 @@
                                 value="{{ $role }}" />
                         </div>
                         <button type="submit" class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
                             Update
                         </button>
                     </form>
@@ -81,6 +82,7 @@
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
                             Change Password
                         </button>
                     </form>

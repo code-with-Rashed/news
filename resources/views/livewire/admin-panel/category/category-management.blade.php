@@ -20,7 +20,10 @@
                         @enderror
                     </div>
                     <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>
@@ -51,7 +54,10 @@
                         @enderror
                     </div>
                     <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+                            Update
+                        </button>
                     </div>
                 </form>
             </div>

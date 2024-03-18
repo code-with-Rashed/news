@@ -17,7 +17,10 @@
                             data-terms-conditions="@this">{{ $settings->terms_conditions }}</textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="updateButton">Update</button>
+                        <button type="submit" class="btn btn-primary" id="updateButton">
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+                            Update
+                        </button>
                     </div>
                 </form>
             </div>

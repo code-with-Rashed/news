@@ -56,6 +56,7 @@
                         <button type="submit" class="btn btn-primary" id="saveButton">
                             <i class="bi bi-cloud-arrow-up"></i>
                             Save
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
                         </button>
                     </div>
                 </form>
@@ -126,7 +127,10 @@
                         <span class="text-danger mb-2 d-block">{{ $message }}</span>
                     @enderror
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="updateButton">Update</button>
+                        <button type="submit" class="btn btn-primary" id="updateButton">
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+                            Update
+                        </button>
                     </div>
                 </form>
             </div>

@@ -16,6 +16,9 @@
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+            Login
+        </button>
     </form>
 </div>

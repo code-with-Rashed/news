@@ -113,7 +113,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">SAVE</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+                            SAVE
+                        </button>
                     </div>
                 </form>
             </div>
