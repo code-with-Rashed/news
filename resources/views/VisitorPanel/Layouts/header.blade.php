@@ -49,9 +49,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact-page') }}">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary btn-sm m-2 px-3" data-bs-toggle="modal"
+                            data-bs-target="#loginModal">
+                            Login
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary btn-sm m-2 px-3" data-bs-toggle="modal"
+                            data-bs-target="#registerModal">
+                            Register
+                        </button>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search" method="GET" action="{{ route('search-page', ['s' => '']) }}">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="s"/>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        name="s" />
                     <button class="btn btn-outline-success" type="submit">
                         Search
                     </button>

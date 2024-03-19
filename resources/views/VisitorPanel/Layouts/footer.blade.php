@@ -1,3 +1,6 @@
+{{-- initialize login & register modal component --}}
+<livewire:visitor-panel.register-login />
+
 @php
     $categories = new \App\Livewire\VisitorPanel\Categories();
 @endphp
