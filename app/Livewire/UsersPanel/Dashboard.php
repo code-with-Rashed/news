@@ -7,11 +7,11 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout("UsersPanel.index")]
-#[Title("News Feed")]
-class NewsFeed extends Component
+#[Title("Dashboard")]
+class Dashboard extends Component
 {
     public function render()
     {
-        return view('livewire.users-panel.news-feed');
+        return view('livewire.users-panel.dashboard');
     }
 }
