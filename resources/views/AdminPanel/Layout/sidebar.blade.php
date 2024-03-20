@@ -1,8 +1,11 @@
+@php
+    $settings = new \App\Livewire\VisitorPanel\Settings();
+@endphp
 <!-- Sidebar Area Start -->
 <div class="col-2 bg-white shadow-sm vh-100">
     <!-- Logo Area Start -->
     <div class="py-3 text-center">
-        <img src="{{asset("storage/media/logo/logo.png")}}" alt="logo" width="150" />
+        <img src="{{ asset('storage/media/logo/' . $settings->logo()) }}" alt="logo" width="150" />
     </div>
     <!-- Logo Area End -->
     <!-- Sidebar Link Area Start -->
@@ -38,7 +41,8 @@
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ route('admin.writer-list') }}" class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
+                    <a href="{{ route('admin.writer-list') }}"
+                        class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
                         <i class="bi bi-keyboard fs-5 me-1"></i>
                         Writer's
                     </a>
