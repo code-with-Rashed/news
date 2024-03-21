@@ -18,29 +18,30 @@
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" title="Likes">
                                     <i class="bi bi-hand-thumbs-up"></i>
-                                    200
+                                    {{ $news_summaries[0]->total_likes }}
                                 </button>
                             </div>
                             <div>
                                 <button type="button" class="btn btn-sm btn-secondary mx-1" title="Dislikes">
                                     <i class="bi bi-hand-thumbs-down"></i>
-                                    80
+                                    {{ $news_summaries[0]->total_dislikes }}
                                 </button>
                             </div>
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" title="Comments">
                                     <i class="bi bi-chat"></i>
-                                    300
+                                    {{ $news_summaries[0]->total_comments }}
                                 </button>
                             </div>
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" title="Views">
                                     <i class="bi bi-graph-up-arrow"></i>
-                                    600
+                                    {{ $news_summaries[0]->total_views }}
                                 </button>
                             </div>
                             <div>
-                                <button onclick="window.print()" type="button" class="btn btn-sm btn-primary" title="print">
+                                <button onclick="window.print()" type="button" class="btn btn-sm btn-primary"
+                                    title="print">
                                     <i class="bi bi-printer"></i>
                                 </button>
                             </div>

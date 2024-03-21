@@ -12,6 +12,8 @@ class ReadNews extends Component
 {
     protected $id;
     protected $read_news;
+    protected $news_summaries;
+
     public function mount($id)
     {
         $this->id = $id;
@@ -19,14 +21,16 @@ class ReadNews extends Component
         if (is_null($this->read_news)) {
             return redirect()->route('home-page');
         }
+
+        $this->news_summaries = NewsSummary::where('news_id', $this->id)->get();
+
         $this->increment_views();
     }
 
     public function increment_views()
     {
-        $news_summaries = NewsSummary::where('news_id', $this->id)->get();
-        if (count($news_summaries)) {
-            $total_views = $news_summaries[0]->total_views + 1;
+        if (count($this->news_summaries)) {
+            $total_views = $this->news_summaries[0]->total_views + 1;
             NewsSummary::where('news_id', $this->id)->update(['total_views' => $total_views]);
         } else {
             $news_summaries = new NewsSummary();
@@ -38,8 +42,7 @@ class ReadNews extends Component
 
     public function render()
     {
-        $read_news = $this->read_news;
-        $related_news = News::select(['id', 'category_id', 'title', 'image', 'created_at'])->where('category_id', $read_news->category_id)->orderByDesc('id')->paginate(5);
-        return view('livewire.visitor-panel.read-news')->with(compact('read_news', 'related_news'))->title($read_news->title);
+        $related_news = News::select(['id', 'category_id', 'title', 'image', 'created_at'])->where('category_id', $this->read_news->category_id)->orderByDesc('id')->paginate(5);
+        return view('livewire.visitor-panel.read-news', ['read_news' => $this->read_news, 'related_news' => $related_news, 'news_summaries' => $this->news_summaries])->title($this->read_news->title);
     }
 }
