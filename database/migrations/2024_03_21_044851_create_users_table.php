@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',50);
             $table->string('email',60);
-            $table->string('password',50);
+            $table->string('password');
             $table->string('photo')->default('user.jpg');
             $table->enum('status',[1,0])->default(1)->comment('status 1 means user is active & 0 means user is inactive');
             $table->timestamps();
