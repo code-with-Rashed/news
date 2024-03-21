@@ -84,7 +84,3 @@
     </div>
     <!-- Contact area end -->
 </div>
-@push('sweet_alert')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('assets/js/sweetAlert.js') }}"></script>
-@endpush
