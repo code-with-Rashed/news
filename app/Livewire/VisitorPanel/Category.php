@@ -5,14 +5,10 @@ namespace App\Livewire\VisitorPanel;
 use App\Models\News;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 #[Layout('VisitorPanel.index')]
 class Category extends Component
 {
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-
     public $id;
     public function mount($id)
     {
@@ -20,7 +16,7 @@ class Category extends Component
     }
     public function render()
     {
-        $category_news = News::with('category')->where('category_id', $this->id)->orderByDesc('id')->get();
+        $category_news = News::with('category')->where('category_id', $this->id)->latest()->paginate(3);
         $title = '';
         if (count($category_news) > 0) {
             $title = $category_news[0]->category->name ?? $category_news[0]->category->name;

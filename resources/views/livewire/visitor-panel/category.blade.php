@@ -39,6 +39,9 @@
                 <!-- Category area end -->
             </div>
         @endforeach
+        {{-- pagination start --}}
+        {{ $category_news->links('pagination::bootstrap-5') }}
+        {{-- pagination end --}}
     </div>
     <!-- Content area end -->
 </div>
