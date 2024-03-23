@@ -16,27 +16,29 @@
                     <div class="col-md-6 mb-3 mt-2">
                         <div class="d-flex justify-content-evenly">
                             <div>
-                                <button type="button" class="btn btn-sm btn-primary" title="Likes">
+                                <button type="button" class="btn btn-sm btn-primary" title="Likes"
+                                    wire:click="like({{ $read_news->id }})">
                                     <i class="bi bi-hand-thumbs-up"></i>
-                                    {{ $news_summaries[0]->total_likes }}
+                                    {{ $news_summaries->total_likes ?? 0 }}
                                 </button>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-sm btn-secondary mx-1" title="Dislikes">
+                                <button type="button" class="btn btn-sm btn-secondary mx-1" title="Dislikes"
+                                    wire:click="dislike({{ $read_news->id }})">
                                     <i class="bi bi-hand-thumbs-down"></i>
-                                    {{ $news_summaries[0]->total_dislikes }}
+                                    {{ $news_summaries->total_dislikes ?? 0 }}
                                 </button>
                             </div>
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" title="Comments">
                                     <i class="bi bi-chat"></i>
-                                    {{ $news_summaries[0]->total_comments }}
+                                    {{ $news_summaries->total_comments ?? 0 }}
                                 </button>
                             </div>
                             <div>
                                 <button type="button" class="btn btn-sm btn-primary" title="Views">
                                     <i class="bi bi-graph-up-arrow"></i>
-                                    {{ $news_summaries[0]->total_views }}
+                                    {{ $news_summaries->total_views ?? 1 }}
                                 </button>
                             </div>
                             <div>

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\VisitorPanel;
 
+use App\Models\Dislike;
+use App\Models\Like;
 use App\Models\News;
 use App\Models\NewsSummary;
 use Livewire\Attributes\Layout;
@@ -12,6 +14,7 @@ class ReadNews extends Component
 {
     protected $id;
     protected $read_news;
+    protected $related_news;
     protected $news_summaries;
 
     public function mount($id)
@@ -22,15 +25,16 @@ class ReadNews extends Component
             return redirect()->route('home-page');
         }
 
-        $this->news_summaries = NewsSummary::where('news_id', $this->id)->get();
+        $this->related_news = News::select(['id', 'category_id', 'title', 'image', 'created_at'])->where('category_id', $this->read_news->category_id)->orderByDesc('id')->paginate(5);
+        $this->news_summaries = NewsSummary::where('news_id', $this->id)->first();
 
         $this->increment_views();
     }
 
     public function increment_views()
     {
-        if (count($this->news_summaries)) {
-            $total_views = $this->news_summaries[0]->total_views + 1;
+        if (!is_null($this->news_summaries)) {
+            $total_views = $this->news_summaries->total_views + 1;
             NewsSummary::where('news_id', $this->id)->update(['total_views' => $total_views]);
         } else {
             $news_summaries = new NewsSummary();
@@ -40,9 +44,93 @@ class ReadNews extends Component
         }
     }
 
+    // handle user like
+    public function like($id)
+    {
+        $this->mount($id);
+        if (!$this->is_user_login()) {
+            $this->dispatch(
+                "alert",
+                type: "error",
+                title: "<strong>Like this news ?</strong><br><p>Sign in to make your opinion count.</p>"
+            );
+            return false;
+        }
+
+        $like = Like::where('news_id', $this->id)->where('users_id', $this->logedin_user_id())->first();
+
+        if (is_null($like)) {
+            Like::insert(['news_id' => $this->id, 'users_id' => $this->logedin_user_id()]);
+            $total_likes = $this->news_summaries->total_likes + 1;
+            NewsSummary::where('news_id', $this->id)->update(['total_likes' => $total_likes]);
+            $this->dispatch(
+                "alert",
+                type: "success",
+                title: "Thanks for like ."
+            );
+        } else {
+            $like->delete();
+            $total_likes = $this->news_summaries->total_likes - 1;
+            NewsSummary::where('news_id', $this->id)->update(['total_likes' => $total_likes]);
+            $this->dispatch(
+                "alert",
+                type: "error",
+                title: "Like has been removed ."
+            );
+        }
+    }
+
+    // handle user dislike
+    public function dislike($id)
+    {
+        $this->mount($id);
+
+        if (!$this->is_user_login()) {
+            $this->dispatch(
+                "alert",
+                type: "error",
+                title: "<strong>Don't like this news ?</strong><br><p>Sign in to make your opinion count.</p>"
+            );
+            return false;
+        }
+
+        $dislike = Dislike::where('news_id', $this->id)->where('users_id', $this->logedin_user_id())->first();
+
+        if (is_null($dislike)) {
+            Dislike::insert(['news_id' => $this->id, 'users_id' => $this->logedin_user_id()]);
+            $total_dislikes = $this->news_summaries->total_dislikes + 1;
+            NewsSummary::where('news_id', $this->id)->update(['total_dislikes' => $total_dislikes]);
+            $this->dispatch(
+                "alert",
+                type: "success",
+                title: "Thanks for dislike ."
+            );
+        } else {
+            $dislike->delete();
+            $total_dislikes = $this->news_summaries->total_dislikes - 1;
+            NewsSummary::where('news_id', $this->id)->update(['total_dislikes' => $total_dislikes]);
+            $this->dispatch(
+                "alert",
+                type: "error",
+                title: "Disike has been removed ."
+            );
+        }
+    }
+
+    // check is user is login
+    public function is_user_login()
+    {
+        return session()->has('user');
+    }
+
+    // get user id
+    public function logedin_user_id()
+    {
+        return session()->get('user')['id'];
+    }
+
     public function render()
     {
-        $related_news = News::select(['id', 'category_id', 'title', 'image', 'created_at'])->where('category_id', $this->read_news->category_id)->orderByDesc('id')->paginate(5);
-        return view('livewire.visitor-panel.read-news', ['read_news' => $this->read_news, 'related_news' => $related_news, 'news_summaries' => $this->news_summaries])->title($this->read_news->title);
+        return view('livewire.visitor-panel.read-news', ['read_news' => $this->read_news, 'related_news' => $this->related_news, 'news_summaries' => $this->news_summaries])->title($this->read_news->title);
     }
 }
