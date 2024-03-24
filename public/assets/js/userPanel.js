@@ -11,6 +11,9 @@ function toggle() {
   }
 }
 
+if (innerWidth > 1100) {
+  toggle();
+}
 
 // Current active page
 var activePage = () => {
