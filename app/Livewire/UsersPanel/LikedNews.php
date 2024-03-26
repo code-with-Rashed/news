@@ -19,14 +19,11 @@ class LikedNews extends Component
 
     public function remove_liked_news($id)
     {
-        $liked_news = Like::find($id);
-        if (!is_null($liked_news)) {
-            if ($liked_news->users_id == $this->logedin_user_id()) {
-                $liked_news->delete();
-                $this->redirectRoute('user.liked-news');
-            }
-        }
+
+        Like::where('id', $id)->where('users_id', $this->logedin_user_id())->delete();
+        $this->redirectRoute('user.liked-news');
     }
+    
     public function render()
     {
 
