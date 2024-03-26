@@ -4,6 +4,7 @@ namespace App\Livewire\UsersPanel;
 
 use App\Models\Category;
 use App\Models\Like;
+use Illuminate\Database\Console\Migrations\StatusCommand;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -19,11 +20,10 @@ class LikedNews extends Component
 
     public function remove_liked_news($id)
     {
-
         Like::where('id', $id)->where('users_id', $this->logedin_user_id())->delete();
         $this->redirectRoute('user.liked-news');
     }
-    
+
     public function render()
     {
 
