@@ -4,7 +4,6 @@ namespace App\Livewire\UsersPanel;
 
 use App\Models\Category;
 use App\Models\Like;
-use Illuminate\Database\Console\Migrations\StatusCommand;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
