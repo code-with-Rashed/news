@@ -24,11 +24,17 @@
                 </button>
                 <div class="sidebar-logo">
                     <a href="{{ route('home-page') }}">
-                        <img src="{{ asset('storage/media/logo/' . $settings->logo()) }}" alt="logo" width="100px">
+                        <img src="{{ asset('storage/media/logo/' . $settings->logo()) }}" alt="logo" width="100">
                     </a>
                 </div>
             </div>
             <ul class="sidebar-nav">
+                <li class="sidebar-item mb-2">
+                    <a href="{{ route('home-page') }}" class="sidebar-link">
+                        <i class="bi bi-house-heart fs-5 me-1"></i>
+                        <span>Back Home Page</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a href="{{ route('user.dashboard') }}" class="sidebar-link">
                         <i class="bi bi-diagram-3 fs-5 me-1"></i>
@@ -62,9 +68,9 @@
             </ul>
             <div class="sidebar-footer">
                 <a href="{{ route('user.profile') }}" class="sidebar-link">
-                    <img src="{{ asset('storage/media/profile/user.jpg') }}" alt="profile" width="25px"
-                        height="25px" style="border-radius: 50%;">
-                    <span class="ms-1">Profile</span>
+                    <img src="{{ asset('storage/media/profile/' . session()->get('user')['photo']) }}" alt="profile"
+                        width="25px" height="25px" style="border-radius: 50%;">
+                    <span class="ms-1 text-capitalize">{{ session()->get('user')['name'] }}</span>
                 </a>
                 <a href="{{ route('user.logout') }}" class="sidebar-link">
                     <i class="bi bi-box-arrow-left"></i>
