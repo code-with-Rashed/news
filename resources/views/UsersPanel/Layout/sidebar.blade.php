@@ -60,6 +60,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="{{ route('user.disliked-news') }}" class="sidebar-link">
+                        <i class="bi bi-hand-thumbs-down"></i>
+                        <span>Disliked news</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="{{ route('user.interested-category') }}" class="sidebar-link">
                         <i class="bi bi-bookmark-heart"></i>
                         <span>Interested on category</span>
