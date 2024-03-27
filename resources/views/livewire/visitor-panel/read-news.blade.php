@@ -42,6 +42,11 @@
                                 </button>
                             </div>
                             <div>
+                                <button type="button" class="btn btn-sm btn-primary" title="Bookmark" wire:click="bookmark({{ $read_news->id }})">
+                                    <i class="bi bi-bookmark"></i>
+                                </button>
+                            </div>
+                            <div>
                                 <button onclick="window.print()" type="button" class="btn btn-sm btn-primary"
                                     title="print">
                                     <i class="bi bi-printer"></i>

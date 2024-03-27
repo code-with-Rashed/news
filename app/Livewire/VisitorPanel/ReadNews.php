@@ -2,6 +2,7 @@
 
 namespace App\Livewire\VisitorPanel;
 
+use App\Models\Bookmark;
 use App\Models\Dislike;
 use App\Models\Like;
 use App\Models\News;
@@ -115,6 +116,32 @@ class ReadNews extends Component
                 title: "Disike has been removed ."
             );
         }
+    }
+
+    // handle news bookmark
+    public function bookmark($id)
+    {
+        $this->mount($id);
+
+        if (!$this->is_user_login()) {
+            $this->dispatch(
+                "alert",
+                type: "error",
+                title: "Please login to save the article"
+            );
+            return false;
+        }
+
+        Bookmark::updateOrCreate([
+            "user_id" => $this->logedin_user_id(),
+            "news_id" => $this->id
+        ]);
+
+        $this->dispatch(
+            "alert",
+            type: "success",
+            title: "The article is bookmarked ."
+        );
     }
 
     // check is user is login
