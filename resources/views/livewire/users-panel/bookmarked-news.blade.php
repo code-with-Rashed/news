@@ -1,141 +1,61 @@
 <div>
-    <div class="row shadow rounded py-3 px-2 mb-3 m-auto">
-        <!-- Category area start -->
-        <div class="col">
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="read.html" class="d-block">
-                        <img src="https://media.gettyimages.com/id/1810826957/photo/shenyang-china-chinese-honour-guards-march-during-a-burial-ceremony-for-the-remains-of-25.jpg?s=612x612&w=0&k=20&c=hl5gctjIn-xFYt1q-ShgBCleHwHtbUHWGghdViaBhmc="
-                            alt="lates-newa-image" class="img-fluid rounded" />
-                    </a>
-                </div>
-                <div class="col-md-9">
-                    <div class="my-1">
-                        <a href="read.html" class="text-decoration-none text-dark">
-                            <p class="h6">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            </p>
+    @foreach ($bookmark_news as $bookmark)
+        <div class="row shadow rounded py-3 px-2 mb-3 m-auto" wire:key="{{ $bookmark->id }}">
+            <!-- Category area start -->
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="d-md-none d-sm-block mb-2 text-end">
+                            <span class="badge text-bg-danger" title="Remove from liked news."
+                                wire:click="remove_bookmark_item({{ $bookmark->id }})"><i class="bi bi-trash3"></i></span>
+                        </div>
+                        <a href="{{ url('/read/' . $bookmark->news->id) }}" class="d-block">
+                            <img src="{{ asset('storage/media/news/' . $bookmark->news->image) }}"
+                                alt="lates-newa-image" class="img-fluid rounded" loading="lazy" />
                         </a>
                     </div>
-                    <div class="mb-3">
-                        <a href="category.html" class="text-decoration-none text-dark">
-                            <span title="Category"><i class="bi bi-tag"></i>International</span>
-                        </a>
-                        <span class="ms-2"><i class="bi bi-calendar3"></i> 12/09/23</span>
-                    </div>
-                    <div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, architecto!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos earum in illo perferendis
-                            ducimus.
-                            Quisquam.</p>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore aspernatur, possimus alias
-                            facere
-                            error aliquid dignissimos qui vitae, laborum molestias voluptate perspiciatis, pariatur sint
-                            et.<a href="read.html" class="text-primary text-decoration-none">...Read More</a></p>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Category area end -->
-    </div>
-    <div class="row shadow rounded py-3 px-2 mb-3 m-auto">
-        <!-- Category area start -->
-        <div class="col">
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="read.html" class="d-block">
-                        <img src="https://media.gettyimages.com/id/1811209720/photo/sunderland-england-nissan-car-production-continues-ahead-of-an-announcement-by-president-and.jpg?s=612x612&w=0&k=20&c=o6NEp614VevjfVBKVQKNULayor7tv4m7aFDkRxxBNi8="
-                            alt="lates-newa-image" class="img-fluid rounded" />
-                    </a>
-                </div>
-                <div class="col-md-9">
-                    <div class="my-1">
-                        <a href="read.html" class="text-decoration-none text-dark">
-                            <p class="h6">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            </p>
-                        </a>
-                    </div>
-                    <div class="mb-3">
-                        <a href="category.html" class="text-decoration-none text-dark">
-                            <span title="Category"><i class="bi bi-tag"></i>International</span>
-                        </a>
-                        <span class="ms-2"><i class="bi bi-calendar3"></i> 12/09/23</span>
-                    </div>
-                    <div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, architecto!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos earum in illo perferendis
-                            ducimus.
-                            Quisquam.</p>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore aspernatur, possimus alias
-                            facere
-                            error aliquid dignissimos qui vitae, laborum molestias voluptate perspiciatis, pariatur sint
-                            et.<a href="read.html" class="text-primary text-decoration-none">...Read More</a></p>
-                        </p>
+                    <div class="col-md-9">
+                        <div class="my-1 d-flex justify-content-between">
+                            <a href="{{ url('/read/' . $bookmark->news->id) }}" class="text-decoration-none text-dark">
+                                <p class="h6">
+                                    {{ $bookmark->news->title }}
+                                </p>
+                            </a>
+                            <button class="btn btn-sm btn-danger d-md-block d-none" title="Remove from liked news."
+                                wire:click="remove_bookmark_item({{ $bookmark->id }})"><i
+                                    class="bi bi-trash3"></i></button>
+                        </div>
+                        <div class="mb-3">
+                            <a href="{{ url('/category/' . $bookmark->news->category_id) }}"
+                                class="text-decoration-none text-dark">
+                                <span title="Category">
+                                    <i class="bi bi-tag"></i>
+                                    @foreach ($category as $value)
+                                        @if ($value->id == $bookmark->news->category_id)
+                                            {{ $value->name }}
+                                        @endif
+                                    @endforeach
+                                </span>
+                            </a>
+                            <span class="ms-2"><i class="bi bi-calendar3"></i>
+                                {{ date('d/m/Y', strtotime($bookmark->news->created_at)) }}</span>
+                        </div>
+                        <div>
+                            <article>
+                                <p class="mt-1">
+                                    {!! substr($bookmark->news->news, 0, 800) !!}
+                                    <a href="{{ url('/read/' . $bookmark->news->id) }}"
+                                        class="text-decoration-none text-primary">...Read More</a>
+                                </p>
+                            </article>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- Category area end -->
         </div>
-        <!-- Category area end -->
-    </div>
-    <div class="row shadow rounded py-3 px-2 mb-3 m-auto">
-        <!-- Category area start -->
-        <div class="col">
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="read.html" class="d-block">
-                        <img src="https://images.pexels.com/photos/2422280/pexels-photo-2422280.jpeg?auto=compress&cs=tinysrgb&w=600"
-                            alt="lates-newa-image" class="img-fluid rounded" />
-                    </a>
-                </div>
-                <div class="col-md-9">
-                    <div class="my-1">
-                        <a href="read.html" class="text-decoration-none text-dark">
-                            <p class="h6">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            </p>
-                        </a>
-                    </div>
-                    <div class="mb-3">
-                        <a href="category.html" class="text-decoration-none text-dark">
-                            <span title="Category"><i class="bi bi-tag"></i>International</span>
-                        </a>
-                        <span class="ms-2"><i class="bi bi-calendar3"></i> 12/09/23</span>
-                    </div>
-                    <div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, architecto!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos earum in illo perferendis
-                            ducimus.
-                            Quisquam.</p>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore aspernatur, possimus alias
-                            facere
-                            error aliquid dignissimos qui vitae, laborum molestias voluptate perspiciatis, pariatur sint
-                            et.<a href="read.html" class="text-primary text-decoration-none">...Read More</a></p>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Category area end -->
-    </div>
+    @endforeach
     <!-- Pagination start -->
-    <div class="row shadow rounded p-3 mb-3 m-auto">
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    {{ $bookmark_news->links('pagination::bootstrap-5') }}
     <!-- Pagination end -->
 </div>
