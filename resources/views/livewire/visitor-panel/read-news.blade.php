@@ -85,55 +85,47 @@
                 <!-- write comments area start-->
                 <hr />
                 <!-- comments area start-->
-                <div class="mb-4 accordion shadow-sm d-print-none" id="accordionExample">
+                <div wire:ignore.self class="mb-4 accordion shadow-sm d-print-none" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                <strong><i class="bi bi-chat me-1 text-primary"></i>Comments</strong>
+                                <strong wire:click="show_comments({{ $read_news->id }})"><i
+                                        class="bi bi-chat me-1 text-primary"></i>Show Comments</strong>
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <div class="p-1 shadow-sm mb-1">
-                                    <div>
-                                        <strong>Rashed alam</strong>
-                                        <br />
-                                        <span>10/09/2022</span>
-                                        <br />
-                                        <p>
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                                            elit.
-                                        </p>
+                                @if (count($comments) > 0)
+                                    @foreach ($comments as $comment)
+                                        <div class="p-2 shadow-sm mb-1 rounded">
+                                            <div>
+                                                <div class="d-flex justify-content-between">
+                                                    <strong>{{ $comment->user->name }}</strong>
+                                                    @if (session('user')['id'] == $comment->user_id)
+                                                        <span
+                                                            wire:click="delete_comment({{ $comment->news_id }},{{ $comment->id }})"
+                                                            role="button" class="badge text-bg-danger"
+                                                            title="Delete Your Comment."><i
+                                                                class="bi bi-trash3"></i></span>
+                                                    @endif
+                                                </div>
+                                                <span>{{ date('d/m/Y', strtotime($comment->created_at)) }}</span>
+                                                <br />
+                                                <p>{{ $comment->comment }}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <button type="button" class="btn btn-sm btn-primary mt-2" title="More Comments...">
+                                        More...
+                                    </button>
+                                @else
+                                    <div class="p-2 shadow-sm mb-1">
+                                        <div>
+                                            <strong>Comment not found !!</strong>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="p-1 shadow-sm mb-1">
-                                    <div>
-                                        <strong>Arafat islam</strong>
-                                        <br />
-                                        <span>10/11/2023</span>
-                                        <br />
-                                        <p>
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                                            elit.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="p-1 shadow-sm mb-1">
-                                    <div>
-                                        <strong>Affan sekh</strong>
-                                        <br />
-                                        <span>30/09/2021</span>
-                                        <br />
-                                        <p>
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                                            elit.
-                                        </p>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-sm btn-primary mt-2" title="More Comments...">
-                                    More...
-                                </button>
+                                @endif
                             </div>
                         </div>
                     </div>

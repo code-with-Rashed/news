@@ -19,6 +19,7 @@ class ReadNews extends Component
     protected $related_news;
     protected $news_summaries;
     public $comment;
+    public $comments = [];
 
     public function mount($id)
     {
@@ -160,8 +161,7 @@ class ReadNews extends Component
             "comment" => "required|string|max:255"
         ]);
 
-        $user_id = $this->is_user_login();
-        if (!$user_id) {
+        if (!$this->is_user_login()) {
             $this->dispatch(
                 "alert",
                 type: "error",
@@ -171,7 +171,7 @@ class ReadNews extends Component
         }
 
         $comment = new Comment();
-        $comment->user_id = $user_id;
+        $comment->user_id = $this->logedin_user_id();
         $comment->news_id = $this->id;
         $comment->comment = $this->comment;
         $comment->save();
@@ -182,6 +182,25 @@ class ReadNews extends Component
             "alert",
             type: "success",
             title: "Thanks for your comment"
+        );
+    }
+
+    // show comments
+    public function show_comments($id)
+    {
+        $this->mount($id);
+        $this->comments = Comment::with('user')->where('news_id', $this->id)->get();
+    }
+    // delete comment
+    public function delete_comment($news_id, $comment_id)
+    {
+        $this->mount($news_id);
+        Comment::find($comment_id)->delete();
+
+        $this->dispatch(
+            "alert",
+            type: "success",
+            title: "Your comment is delete."
         );
     }
 
