@@ -42,7 +42,8 @@
                                 </button>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-sm btn-primary" title="Bookmark" wire:click="bookmark({{ $read_news->id }})">
+                                <button type="button" class="btn btn-sm btn-primary" title="Bookmark"
+                                    wire:click="bookmark({{ $read_news->id }})">
                                     <i class="bi bi-bookmark"></i>
                                 </button>
                             </div>
@@ -67,6 +68,21 @@
                     {!! $read_news->news !!}
                 </div>
                 <!-- news area end -->
+                <hr />
+                <!-- write comments area start-->
+                <div class="p-4 shadow-sm my-2">
+                    <form wire:submit="save_comment({{ $read_news->id }})">
+                        <div class="mb-3">
+                            <textarea wire:model="comment" class="form-control" id="comment" cols="30" rows="4"
+                                placeholder="Write Your Comment" maxlength="255"></textarea>
+                            @error('comment')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <!-- write comments area start-->
                 <hr />
                 <!-- comments area start-->
                 <div class="mb-4 accordion shadow-sm d-print-none" id="accordionExample">

@@ -3,6 +3,7 @@
 namespace App\Livewire\VisitorPanel;
 
 use App\Models\Bookmark;
+use App\Models\Comment;
 use App\Models\Dislike;
 use App\Models\Like;
 use App\Models\News;
@@ -17,6 +18,7 @@ class ReadNews extends Component
     protected $read_news;
     protected $related_news;
     protected $news_summaries;
+    public $comment;
 
     public function mount($id)
     {
@@ -148,6 +150,39 @@ class ReadNews extends Component
     public function is_user_login()
     {
         return session()->has('user');
+    }
+
+    // save comment
+    public function save_comment($id)
+    {
+        $this->mount($id);
+        $this->validate([
+            "comment" => "required|string|max:255"
+        ]);
+
+        $user_id = $this->is_user_login();
+        if (!$user_id) {
+            $this->dispatch(
+                "alert",
+                type: "error",
+                title: "Please login then write your comment."
+            );
+            return false;
+        }
+
+        $comment = new Comment();
+        $comment->user_id = $user_id;
+        $comment->news_id = $this->id;
+        $comment->comment = $this->comment;
+        $comment->save();
+
+        $this->reset('comment');
+
+        $this->dispatch(
+            "alert",
+            type: "success",
+            title: "Thanks for your comment"
+        );
     }
 
     // get user id
