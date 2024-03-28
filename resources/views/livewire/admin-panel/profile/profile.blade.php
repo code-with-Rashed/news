@@ -24,6 +24,9 @@
                             @error('photo')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
+                            <div wire:loading wire:tergate="photo">
+                                <span class="text-primary">Uploading...</span>
+                            </div>
                         </div>
                         <div class="form-group mb-3">
                             <label for="name" class="mb-1">Name</label>
@@ -47,7 +50,8 @@
                                 value="{{ $role }}" />
                         </div>
                         <button type="submit" class="btn btn-primary">
-                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading
+                                wire:tergate="update_user"></span>
                             Update
                         </button>
                     </form>
@@ -82,7 +86,8 @@
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">
-                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading></span>
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true" wire:loading
+                                wire:tergate="change_password"></span>
                             Change Password
                         </button>
                     </form>
