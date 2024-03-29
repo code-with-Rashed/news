@@ -102,12 +102,14 @@
                                             <div>
                                                 <div class="d-flex justify-content-between">
                                                     <strong>{{ $comment->user->name }}</strong>
-                                                    @if (session('user')['id'] == $comment->user_id)
-                                                        <span
-                                                            wire:click="delete_comment({{ $comment->news_id }},{{ $comment->id }})"
-                                                            role="button" class="badge text-bg-danger"
-                                                            title="Delete Your Comment."><i
-                                                                class="bi bi-trash3"></i></span>
+                                                    @if(session()->has('user'))
+                                                       @if (session('user')['id'] == $comment->user_id)
+                                                           <span
+                                                               wire:click="delete_comment({{ $comment->news_id }},{{ $comment->id }})"
+                                                               role="button" class="badge text-bg-danger"
+                                                               title="Delete Your Comment."><i
+                                                                   class="bi bi-trash3"></i></span>
+                                                       @endif
                                                     @endif
                                                 </div>
                                                 <span>{{ date('d/m/Y', strtotime($comment->created_at)) }}</span>
