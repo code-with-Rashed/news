@@ -3,6 +3,7 @@
 namespace App\Livewire\AdminPanel\News;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\News;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
@@ -20,7 +21,7 @@ class NewsList extends Component
     use WithFileUploads;
     protected $paginationTheme = "bootstrap";
 
-    public $id, $category_id, $image, $current_image, $title, $news, $edit_news, $details_image, $details_news, $category_name, $writer_name, $created_at;
+    public $id, $category_id, $image, $current_image, $title, $news, $edit_news, $details_image, $details_news, $category_name, $writer_name, $created_at, $comments;
 
     public function add_news()
     {
@@ -135,7 +136,7 @@ class NewsList extends Component
     // reset public properties
     public function resetProperties()
     {
-        $this->reset(["category_id", "image", "title", "news", "id", "current_image", "edit_news", "details_image", "details_news", "category_name", "writer_name", "created_at"]);
+        $this->reset(["category_id", "image", "title", "news", "id", "current_image", "edit_news", "details_image", "details_news", "category_name", "writer_name", "created_at", "comments"]);
     }
 
     // details news
@@ -148,6 +149,47 @@ class NewsList extends Component
         $this->created_at = $news->created_at;
         $this->category_name = $news->category->name;
         $this->writer_name = $news->writer->name;
+
+        // find comments
+        $comment_details = Comment::with('user')->where('news_id', $id)->get();
+        $this->comments = $comment_details;
+    }
+
+    // change comment status
+    public function change_comment_status($id)
+    {
+        $comment = Comment::find($id);
+        $status = $comment->status ? '0' : '1';
+        $comment->status = $status;
+        $comment->update();
+
+        $this->dispatch(
+            "bs-modal-hide",
+            name: "detailNewsModal"
+        );
+
+        $this->dispatch(
+            "alert",
+            type: $status ? "success" : "error",
+            title: $status ? "Comment is public." : "Comment is un-public!!"
+        );
+    }
+
+    // Delete Comment
+    public function delete_comment($id)
+    {
+        Comment::find($id)->delete();
+
+        $this->dispatch(
+            "bs-modal-hide",
+            name: "detailNewsModal"
+        );
+
+        $this->dispatch(
+            "alert",
+            type: "success",
+            title: "The Comment is Delete."
+        );
     }
 
     public function render()

@@ -201,69 +201,44 @@
                         <div id="collapseOne" class="accordion-collapse collapse show"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <div class="d-flex justify-content-between p-1 shadow-sm mb-1">
-                                    <div>
-                                        <strong>Rashed alam</strong>
-                                        <br />
-                                        <span>10/09/2022</span>
-                                        <br />
-                                        <p>
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                                            elit.
-                                        </p>
+                                @if (isset($comments) && count($comments))
+                                    @foreach ($comments as $comment)
+                                        <div class="d-flex justify-content-between p-2 shadow-sm mb-1"
+                                            wire:key="{{ $comment->id }}">
+                                            <div>
+                                                <strong>{{ $comment->user->name }}</strong>
+                                                <br />
+                                                <span>{{ date('d/m/Y', strtotime($comment->created_at)) }}</span>
+                                                <br />
+                                                <p>{{ $comment->comment }}</p>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                    title="The Comment is Public"
+                                                    wire:click="change_comment_status({{ $comment->id }})">
+                                                    @if ($comment->status)
+                                                        <i class="bi bi-eye"></i>
+                                                    @else
+                                                        <i class="bi bi-eye-slash"></i>
+                                                    @endif
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    title="Delete Comment"
+                                                    wire:click="delete_comment({{ $comment->id }})">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <button type="button" class="btn btn-sm btn-primary mt-2"
+                                        title="More Comments...">
+                                        More...
+                                    </button>
+                                @else
+                                    <div class="p-2 shadow-sm mb-1">
+                                        <strong>Comment Not Found !!</strong>
                                     </div>
-                                    <div>
-                                        <button type="button" class="btn btn-sm btn-primary" title="Running">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger" title="Delete">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between p-1 shadow-sm mb-1">
-                                    <div>
-                                        <strong>Arafat islam</strong>
-                                        <br />
-                                        <span>10/11/2023</span>
-                                        <br />
-                                        <p>
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                                            elit.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-sm btn-warning" title="Disabled">
-                                            <i class="bi bi-eye-slash"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger" title="Delete">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between p-1 shadow-sm mb-1">
-                                    <div>
-                                        <strong>Affan sekh</strong>
-                                        <br />
-                                        <span>30/09/2021</span>
-                                        <br />
-                                        <p>
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                                            elit.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-sm btn-primary" title="Running">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-danger" title="Delete">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-sm btn-primary mt-2" title="More Comments...">
-                                    More...
-                                </button>
+                                @endif
                             </div>
                         </div>
                     </div>
