@@ -70,7 +70,7 @@
                 <!-- news area end -->
                 <hr />
                 <!-- write comments area start-->
-                <div class="p-4 shadow-sm my-2">
+                <div class="p-4 shadow-sm my-2 d-print-none">
                     <form wire:submit="save_comment({{ $read_news->id }})">
                         <div class="mb-3">
                             <textarea wire:model="comment" class="form-control" id="comment" cols="30" rows="4"
@@ -81,9 +81,9 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+                    <hr />
                 </div>
                 <!-- write comments area start-->
-                <hr />
                 <!-- comments area start-->
                 <div wire:ignore.self class="mb-4 accordion shadow-sm d-print-none" id="accordionExample">
                     <div class="accordion-item">
