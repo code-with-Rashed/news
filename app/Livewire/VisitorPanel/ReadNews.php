@@ -189,7 +189,7 @@ class ReadNews extends Component
     public function show_comments($id)
     {
         $this->mount($id);
-        $this->comments = Comment::with('user')->where('news_id', $this->id)->get();
+        $this->comments = Comment::with('user')->where('news_id', $this->id)->where('status',1)->get();
     }
     // delete comment
     public function delete_comment($news_id, $comment_id)
