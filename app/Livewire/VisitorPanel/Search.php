@@ -16,7 +16,7 @@ class Search extends Component
     public $result_exist = false;
     public function render()
     {
-        $result = News::with('category')->where('title', 'like', '%' . $this->s . '%')->get();
+        $result = News::with('category')->where('title', 'like', '%' . $this->s . '%')->latest()->get();
         if (count($result) > 0) {
             $this->search_result = $result;
             $this->result_exist = true;
