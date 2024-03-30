@@ -29,7 +29,7 @@ class Settings extends Component
             if (Storage::exists("public/media/favicon/" . $settings->favicon)) {
                 Storage::delete("public/media/favicon/" . $settings->favicon);
             }
-            $favicon_name = $this->favicon->store("public/media/favicon");
+            $favicon_name = $this->favicon->store("media/favicon", "public_disk");
             $favicon = basename($favicon_name);
             $settings->favicon = $favicon;
             $settings->update();
@@ -60,7 +60,7 @@ class Settings extends Component
             if (Storage::exists("public/media/logo/" . $settings->logo)) {
                 Storage::delete("public/media/logo/" . $settings->logo);
             }
-            $logo_name = $this->logo->store("public/media/logo");
+            $logo_name = $this->logo->store("media/logo", "public_disk");
             $logo = basename($logo_name);
             $settings->logo = $logo;
             $settings->update();

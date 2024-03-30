@@ -38,7 +38,7 @@ class NewsList extends Component
         $news->writer_id = session('admin')['id'];
         $news->title = $this->title;
         $news->news = $this->news;
-        $image_name = $this->image->store("public/media/news");
+        $image_name = $this->image->store("media/news", "public_disk");
         $image = basename($image_name);
         $news->image = $image;
         $news->save();
@@ -94,7 +94,7 @@ class NewsList extends Component
 
         // if chosed another news. then save new image & delete old image
         if ($this->image) {
-            $image_name = $this->image->store("public/media/news");
+            $image_name = $this->image->store("media/news", "public_disk");
             $image = basename($image_name);
             $news->image = $image;
 

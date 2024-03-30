@@ -33,7 +33,7 @@ class Profile extends Component
         $writer->email = $this->email;
 
         if ($this->photo) {
-            $image_name = $this->photo->store("public/media/profile");
+            $image_name = $this->photo->store("media/profile", "public_disk");
             $image = basename($image_name);
             $writer->photo = $image;
 
