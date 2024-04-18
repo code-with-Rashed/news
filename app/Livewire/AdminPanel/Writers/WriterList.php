@@ -135,14 +135,14 @@ class WriterList extends Component
     // writer details
     public function details($id)
     {
-        $writer = Writer::with('news')->find($id);
+        $writer = Writer::withCount('news')->find($id);
         $this->writer_details = $writer;
     }
 
     // render component
     public function render()
     {
-        $writers = Writer::with('news')->paginate(4);
+        $writers = Writer::withCount('news')->paginate(4);
         return view('livewire.admin-panel.writers.writer-list')->with(compact("writers"));
     }
 }

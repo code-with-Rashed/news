@@ -27,7 +27,7 @@
                             <td>{{ $writer->name }}</td>
                             <td>{{ $writer->email }}</td>
                             <td>{{ $writer->role }}</td>
-                            <td>{{ count($writer->news) }}</td>
+                            <td>{{ $writer->news_count }}</td>
                             <td>{{ date('d/m/Y', strtotime($writer->created_at)) }}</td>
                             <td>
                                 @if ($writer->status == 1)

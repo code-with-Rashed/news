@@ -142,7 +142,7 @@
                             <p><strong>Role : </strong>{{ $writer_details->role }}</p>
                         </div>
                         <div class="w-100">
-                            <p><strong>News Write : </strong>{{ count($writer_details->news) }}</p>
+                            <p><strong>News Write : </strong>{{ $writer_details->news_count }}</p>
                             <p><strong>Join Date : </strong>{{ date('d/m/Y', strtotime($writer_details->created_at)) }}
                             </p>
                             <p><strong>Status : </strong>

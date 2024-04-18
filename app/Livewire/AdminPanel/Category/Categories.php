@@ -113,7 +113,7 @@ class Categories extends Component
 
     public function render()
     {
-        $categories = Category::with('news')->paginate(4);
+        $categories = Category::withCount('news')->paginate(4);
         return view('livewire.admin-panel.category.categories', compact("categories"));
     }
 }
