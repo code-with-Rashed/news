@@ -51,6 +51,10 @@ class Kernel extends HttpKernel
         'access_user_pages' => [
             \App\Http\Middleware\UserAuth::class
         ],
+
+        'admin_access' => [
+            \App\Http\Middleware\AdminAccess::class
+        ],
     ];
 
     /**
@@ -73,5 +77,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'access_admin_login_page' => \App\Http\Middleware\AdminLoginPage::class,
+        'admin_moderator_access' => \App\Http\Middleware\AdminModeratorAccess::class,
     ];
 }

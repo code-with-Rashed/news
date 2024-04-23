@@ -19,13 +19,15 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="list-group-item">
-                    <a href="{{ route('admin.categories') }}"
-                        class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
-                        <i class="bi bi-list-ul fs-5 me-1"></i>
-                        Categories
-                    </a>
-                </li>
+                @if (session()->get('admin')['role'] == 'admin')
+                    <li class="list-group-item">
+                        <a href="{{ route('admin.categories') }}"
+                            class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
+                            <i class="bi bi-list-ul fs-5 me-1"></i>
+                            Categories
+                        </a>
+                    </li>
+                @endif
                 <li class="list-group-item">
                     <a href="{{ route('admin.news-list') }}"
                         class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
@@ -33,6 +35,7 @@
                         News
                     </a>
                 </li>
+                @if (session()->get('admin')['role'] == 'admin' || session()->get('admin')['role'] == 'moderator')
                 <li class="list-group-item">
                     <a href="{{ route('admin.message-list') }}"
                         class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
@@ -40,6 +43,8 @@
                         Messages
                     </a>
                 </li>
+                @endif
+                @if (session()->get('admin')['role'] == 'admin')
                 <li class="list-group-item">
                     <a href="{{ route('admin.writer-list') }}"
                         class="text-decoration-none fs-6 text-dark fw-bold text-capitalize d-block">
@@ -75,6 +80,7 @@
                         Terms &amp; Conditions
                     </a>
                 </li>
+                @endif
             </ul>
         </div>
     </div>
