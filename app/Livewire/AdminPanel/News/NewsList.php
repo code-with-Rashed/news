@@ -195,7 +195,14 @@ class NewsList extends Component
     public function render()
     {
         $categories = Category::all();
-        $news_list = News::with('category')->with('writer')->latest()->paginate(5);
+        $role = session()->get("admin")["role"];
+        if ($role == "admin" || $role == "moderator") {
+            $news_list = News::with('category')->with('writer')->latest()->paginate(5);
+        } else if ($role == "writer") {
+            $news_list = News::with('category')->withWhereHas('writer', function ($query) {
+                $query->where('role', 'writer');
+            })->latest()->paginate(5);
+        }
         return view('livewire.admin-panel.news.news-list')->with(compact('categories', 'news_list'));
     }
 }
