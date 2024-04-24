@@ -5,6 +5,7 @@ namespace App\Livewire\AdminPanel\News;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\News;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -116,6 +117,32 @@ class NewsList extends Component
             type: "success",
             title: "News successfully updated."
         );
+    }
+
+    // confirmation for delete news
+    public function confirmation($id)
+    {
+        $this->id = $id;
+    }
+
+    // Delete news
+    public function delete($id)
+    {
+        $news = News::find($id);
+        if (!is_null($news)) {
+            
+            if (File::exists(public_path("storage/media/news/" . $news->image))) {
+                File::delete(public_path("storage/media/news/" . $news->image));
+            }
+
+            $news->delete();
+
+            $this->dispatch(
+                "alert",
+                type: "success",
+                title: "This news related all data successfully deleted."
+            );
+        }
     }
 
     // change news publish or un-publish status

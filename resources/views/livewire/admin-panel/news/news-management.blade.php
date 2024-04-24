@@ -250,7 +250,7 @@
 <!-- Details News Modal End -->
 
 <!-- Delete Warning Modal Start-->
-<div class="modal fade" id="deleteModal" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="deleteModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -260,7 +260,8 @@
                 <strong>Are You Sure You Wan't to Delete ?</strong>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    wire:click="delete({{ $id }})">
                     Yes
                 </button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

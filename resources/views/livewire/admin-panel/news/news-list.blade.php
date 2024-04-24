@@ -43,8 +43,8 @@
                                 @endif
                             </td>
                             <td>
-                                <button wire:click="details({{ $news->id }})" class="btn btn-success btn-sm m-1" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#detailNewsModal">
+                                <button wire:click="details({{ $news->id }})" class="btn btn-success btn-sm m-1"
+                                    type="button" data-bs-toggle="modal" data-bs-target="#detailNewsModal">
                                     <i class="bi bi-file-earmark-break"></i>
                                     Details
                                 </button>
@@ -53,11 +53,13 @@
                                     <i class="bi bi-pencil-square"></i>
                                     Edit
                                 </button>
-                                <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal">
-                                    <i class="bi bi-trash"></i>
-                                    Delete
-                                </button>
+                                @if (session()->get('admin')['role'] == 'admin')
+                                    <button class="btn btn-danger btn-sm m-1" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal" wire:click="confirmation({{ $news->id }})">
+                                        <i class="bi bi-trash"></i>
+                                        Delete
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
