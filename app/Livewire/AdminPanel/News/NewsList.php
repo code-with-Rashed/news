@@ -5,6 +5,7 @@ namespace App\Livewire\AdminPanel\News;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\News;
+use App\Models\NewsSummary;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
@@ -22,7 +23,7 @@ class NewsList extends Component
     use WithFileUploads;
     protected $paginationTheme = "bootstrap";
 
-    public $id, $category_id, $image, $current_image, $title, $news, $edit_news, $details_image, $details_news, $category_name, $writer_name, $created_at, $comments;
+    public $id, $category_id, $image, $current_image, $title, $news, $edit_news, $details_image, $details_news, $category_name, $writer_name, $created_at, $comments, $news_summary;
 
     public function add_news()
     {
@@ -163,7 +164,7 @@ class NewsList extends Component
     // reset public properties
     public function resetProperties()
     {
-        $this->reset(["category_id", "image", "title", "news", "id", "current_image", "edit_news", "details_image", "details_news", "category_name", "writer_name", "created_at", "comments"]);
+        $this->reset(["category_id", "image", "title", "news", "id", "current_image", "edit_news", "details_image", "details_news", "category_name", "writer_name", "created_at", "comments", "news_summary"]);
     }
 
     // details news
@@ -176,6 +177,12 @@ class NewsList extends Component
         $this->created_at = $news->created_at;
         $this->category_name = $news->category->name;
         $this->writer_name = $news->writer->name;
+
+        // get news summary
+        $news_summaries = NewsSummary::where('news_id', $id)->get();
+        if (count($news_summaries) > 0) {
+            $this->news_summary = $news_summaries->toArray()[0];
+        }
 
         // find comments
         $comment_details = Comment::with('user')->where('news_id', $id)->get();

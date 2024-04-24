@@ -162,19 +162,19 @@
                     <div>
                         <button type="button" class="btn btn-sm btn-primary" title="Likes">
                             <i class="bi bi-hand-thumbs-up"></i>
-                            200
+                            {{ $news_summary['total_likes'] ?? 0 }}
                         </button>
                         <button type="button" class="btn btn-sm btn-secondary mx-1" title="Dislikes">
                             <i class="bi bi-hand-thumbs-down"></i>
-                            80
+                            {{ $news_summary['total_dislikes'] ?? 0 }}
                         </button>
                         <button type="button" class="btn btn-sm btn-primary" title="Comments">
                             <i class="bi bi-chat"></i>
-                            300
+                            {{ $news_summary['total_comments'] ?? 0 }}
                         </button>
                         <button type="button" class="btn btn-sm btn-primary" title="Views">
                             <i class="bi bi-graph-up-arrow"></i>
-                            600
+                            {{ $news_summary['total_views'] ?? 0 }}
                         </button>
                     </div>
                     <div class="ms-auto">
