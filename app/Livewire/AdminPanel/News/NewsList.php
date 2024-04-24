@@ -212,7 +212,15 @@ class NewsList extends Component
     // Delete Comment
     public function delete_comment($id)
     {
-        Comment::find($id)->delete();
+        $comment = Comment::find($id);
+        if (!is_null($comment)) {
+            // update total comment
+            $news_summary = NewsSummary::where('news_id', $comment->news_id)->first();
+            $total_comments = $news_summary->total_comments - 1;
+            NewsSummary::where('news_id', $news_summary->news_id)->update(['total_comments' => $total_comments]);
+
+            $comment->delete();
+        }
 
         $this->dispatch(
             "bs-modal-hide",

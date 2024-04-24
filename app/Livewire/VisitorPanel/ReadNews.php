@@ -176,6 +176,10 @@ class ReadNews extends Component
         $comment->comment = $this->comment;
         $comment->save();
 
+        // update total comment
+        $total_comments = $this->news_summaries->total_comments + 1;
+        NewsSummary::where('news_id', $this->id)->update(['total_comments' => $total_comments]);
+
         $this->reset('comment');
 
         $this->dispatch(
@@ -189,13 +193,17 @@ class ReadNews extends Component
     public function show_comments($id)
     {
         $this->mount($id);
-        $this->comments = Comment::with('user')->where('news_id', $this->id)->where('status',1)->get();
+        $this->comments = Comment::with('user')->where('news_id', $this->id)->where('status', 1)->get();
     }
     // delete comment
     public function delete_comment($news_id, $comment_id)
     {
         $this->mount($news_id);
         Comment::find($comment_id)->delete();
+
+        // update total comment
+        $total_comments = $this->news_summaries->total_comments - 1;
+        NewsSummary::where('news_id', $this->id)->update(['total_comments' => $total_comments]);
 
         $this->dispatch(
             "alert",
