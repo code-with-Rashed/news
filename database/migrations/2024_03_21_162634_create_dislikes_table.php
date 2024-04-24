@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dislikes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('news_id')->constrained('news');
+            $table->foreignId('news_id')->constrained('news')->onDelete('cascade');
             $table->foreignId('users_id')->constrained('users');
             $table->timestamps();
         });

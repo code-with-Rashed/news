@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('news_summaries', function (Blueprint $table) {
-            $table->foreignId('news_id')->constrained('news')->unique();
+            $table->foreignId('news_id')->constrained('news')->unique()->onDelete('cascade');
             $table->integer('total_likes')->default(0);
             $table->integer('total_dislikes')->default(0);
             $table->integer('total_views')->default(0);

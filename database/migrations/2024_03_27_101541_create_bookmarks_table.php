@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('news_id')->constrained('news');
+            $table->foreignId('news_id')->constrained('news')->onDelete('cascade');
             $table->timestamps();
         });
     }
