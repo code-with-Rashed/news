@@ -99,8 +99,8 @@ class NewsList extends Component
             $image = basename($image_name);
             $news->image = $image;
 
-            if (Storage::exists("public/media/news/" . $this->current_image)) {
-                Storage::delete("public/media/news/" . $this->current_image);
+            if (File::exists(public_path("storage/media/news/" . $this->current_image))) {
+                File::delete(public_path("storage/media/news/" . $this->current_image));
             }
         }
         $news->update();
@@ -130,7 +130,7 @@ class NewsList extends Component
     {
         $news = News::find($id);
         if (!is_null($news)) {
-            
+
             if (File::exists(public_path("storage/media/news/" . $news->image))) {
                 File::delete(public_path("storage/media/news/" . $news->image));
             }
