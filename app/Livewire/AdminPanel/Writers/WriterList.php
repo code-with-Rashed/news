@@ -100,19 +100,26 @@ class WriterList extends Component
     }
 
     // delete writer
-    public function delete_delete($id)
+    public function delete($id)
     {
-        $writer = Writer::find($id);
+        $writer = Writer::withCount('news')->find($id);
         if (!is_null($writer)) {
-            $writer->delete();
+            if ($writer->news_count < 1) {
+                $writer->delete();
+                $this->dispatch(
+                    "alert",
+                    type: "success",
+                    title: "Writer Deleted."
+                );
+            } else {
+                $this->dispatch(
+                    "alert",
+                    type: "error",
+                    title: "Sorry ! Writer wise news exist."
+                );
+            }
         }
         $this->reset("id");
-
-        $this->dispatch(
-            "alert",
-            type: "success",
-            title: "Writer Deleted."
-        );
     }
 
     // change writer status

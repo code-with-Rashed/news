@@ -212,7 +212,7 @@
                 <strong>Are You Sure You Wan't to Delete ?</strong>
             </div>
             <div class="modal-footer">
-                <button wire:click="delete_delete({{ $id }})" type="button" class="btn btn-danger"
+                <button wire:click="delete({{ $id }})" type="button" class="btn btn-danger"
                     data-bs-dismiss="modal">
                     Yes
                 </button>
