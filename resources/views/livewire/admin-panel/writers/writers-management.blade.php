@@ -177,12 +177,10 @@
                                                 </p>
                                             </div>
                                             <div>
-                                                <button type="button" class="btn btn-sm btn-primary"
-                                                    title="Details">
+                                                <button type="button" class="btn btn-sm btn-primary" title="Details"
+                                                    wire:click="writer_news_details({{ $news->id }})" data-bs-toggle="modal"
+                                                    data-bs-target="#detailNewsModal">
                                                     <i class="bi bi-eye"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-danger" title="Delete">
-                                                    <i class="bi bi-trash"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -224,3 +222,112 @@
     </div>
 </div>
 <!-- Delete Writer Modal End -->
+
+<!-- Details News Modal Start -->
+<div wire:ignore.self class="modal fade" id="detailNewsModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                    Details News
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    wire:click="resetProperties()"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    {{ $title }}
+                </p>
+                <img src="{{ asset('storage/media/news/' . $details_image) }}" alt="news image"
+                    class="w-100 rounded" height="400px" style="object-fit: cover" />
+                <div class="mt-3 d-flex justify-content-between">
+                    <div>
+                        <button type="button" class="btn btn-sm btn-primary" title="Likes">
+                            <i class="bi bi-hand-thumbs-up"></i>
+                            {{ $news_summary['total_likes'] ?? 0 }}
+                        </button>
+                        <button type="button" class="btn btn-sm btn-secondary mx-1" title="Dislikes">
+                            <i class="bi bi-hand-thumbs-down"></i>
+                            {{ $news_summary['total_dislikes'] ?? 0 }}
+                        </button>
+                        <button type="button" class="btn btn-sm btn-primary" title="Comments">
+                            <i class="bi bi-chat"></i>
+                            {{ $news_summary['total_comments'] ?? 0 }}
+                        </button>
+                        <button type="button" class="btn btn-sm btn-primary" title="Views">
+                            <i class="bi bi-graph-up-arrow"></i>
+                            {{ $news_summary['total_views'] ?? 0 }}
+                        </button>
+                    </div>
+                    <div class="ms-auto">
+                        <span title="Category" class="me-2"><i class="bi bi-tag"></i> {{ $category_name }}</span>
+                        <span title="Author Name" class="me-2"><i class="bi bi-pencil"></i>
+                            {{ $writer_name }}</span>
+                        <span title="Release Date"><i class="bi bi-calendar3"></i>
+                            {{ date('d/m/Y', strtotime($created_at)) }}</span>
+                    </div>
+                </div>
+                <div class="my-4">
+                    {!! $details_news !!}
+                </div>
+                <hr />
+                <!-- Comments -->
+                <div class="accordion shadow-sm" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <strong><i class="bi bi-chat me-1 text-primary"></i>Comments</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                @if (isset($comments) && count($comments))
+                                    @foreach ($comments as $comment)
+                                        <div class="d-flex justify-content-between p-2 shadow-sm mb-1"
+                                            wire:key="{{ $comment->id }}">
+                                            <div>
+                                                <strong>{{ $comment->user->name }}</strong>
+                                                <br />
+                                                <span>{{ date('d/m/Y', strtotime($comment->created_at)) }}</span>
+                                                <br />
+                                                <p>{{ $comment->comment }}</p>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-sm btn-primary"
+                                                    title="The Comment is Public"
+                                                    wire:click="change_comment_status({{ $comment->id }})">
+                                                    @if ($comment->status)
+                                                        <i class="bi bi-eye"></i>
+                                                    @else
+                                                        <i class="bi bi-eye-slash"></i>
+                                                    @endif
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    title="Delete Comment"
+                                                    wire:click="delete_comment({{ $comment->id }})">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <button type="button" class="btn btn-sm btn-primary mt-2"
+                                        title="More Comments...">
+                                        More...
+                                    </button>
+                                @else
+                                    <div class="p-2 shadow-sm mb-1">
+                                        <strong>Comment Not Found !!</strong>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Details News Modal End -->

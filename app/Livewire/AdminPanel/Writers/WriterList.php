@@ -2,6 +2,9 @@
 
 namespace App\Livewire\AdminPanel\Writers;
 
+use App\Models\Comment;
+use App\Models\News;
+use App\Models\NewsSummary;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -18,6 +21,7 @@ class WriterList extends Component
     protected $paginationTheme = "bootstrap";
 
     public $id, $name, $email, $role, $password, $password_confirmation, $writer_details;
+    public $title, $details_image, $details_news, $category_name, $writer_name, $created_at, $comments, $news_summary;
 
     // add writer
     public function add_writer()
@@ -144,6 +148,34 @@ class WriterList extends Component
     {
         $writer = Writer::withCount('news')->find($id);
         $this->writer_details = $writer;
+    }
+
+    // writer news details
+    public function writer_news_details($id)
+    {
+        $news = News::with('category')->with('writer')->find($id);
+        $this->title = $news->title;
+        $this->details_image = $news->image;
+        $this->details_news = $news->news;
+        $this->created_at = $news->created_at;
+        $this->category_name = $news->category->name;
+        $this->writer_name = $news->writer->name;
+
+        // get news summary
+        $news_summaries = NewsSummary::where('news_id', $id)->get();
+        if (count($news_summaries) > 0) {
+            $this->news_summary = $news_summaries->toArray()[0];
+        }
+
+        // find comments
+        $comment_details = Comment::with('user')->where('news_id', $id)->get();
+        $this->comments = $comment_details;
+    }
+
+    // reset public properties
+    public function resetProperties()
+    {
+        $this->reset(["title", "details_image", "details_news", "category_name", "writer_name", "created_at", "comments", "news_summary"]);
     }
 
     // render component
