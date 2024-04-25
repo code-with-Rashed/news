@@ -3,8 +3,8 @@
 namespace App\Livewire\AdminPanel\Profile;
 
 use App\Models\Writer;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -38,8 +38,8 @@ class Profile extends Component
             $writer->photo = $image;
 
             if ($this->old_photo != "user.jpg") {
-                if (Storage::exists("public/media/profile/" . $this->old_photo)) {
-                    Storage::delete("public/media/profile/" . $this->old_photo);
+                if (File::exists(public_path("storage/media/profile/" . $this->old_photo))) {
+                    File::delete(public_path("storage/media/profile/" . $this->old_photo));
                 }
             }
         }

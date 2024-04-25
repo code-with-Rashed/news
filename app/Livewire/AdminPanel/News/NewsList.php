@@ -7,7 +7,6 @@ use App\Models\Comment;
 use App\Models\News;
 use App\Models\NewsSummary;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;

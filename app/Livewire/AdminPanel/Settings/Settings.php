@@ -6,8 +6,8 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Setting;
+use Illuminate\Support\Facades\File;
 
 #[Layout("AdminPanel.index")]
 #[Title("Settings Management")]
@@ -26,8 +26,8 @@ class Settings extends Component
 
         $settings = Setting::find($id);
         if (!is_null($settings)) {
-            if (Storage::exists("public/media/favicon/" . $settings->favicon)) {
-                Storage::delete("public/media/favicon/" . $settings->favicon);
+            if (File::exists(public_path("storage/media/favicon/" . $settings->favicon))) {
+                File::delete(public_path("storage/media/favicon/" . $settings->favicon));
             }
             $favicon_name = $this->favicon->store("media/favicon", "public_disk");
             $favicon = basename($favicon_name);
@@ -57,8 +57,8 @@ class Settings extends Component
 
         $settings = Setting::find($id);
         if (!is_null($settings)) {
-            if (Storage::exists("public/media/logo/" . $settings->logo)) {
-                Storage::delete("public/media/logo/" . $settings->logo);
+            if (File::exists(public_path("storage/media/logo/" . $settings->logo))) {
+                File::delete(public_path("storage/media/logo/" . $settings->logo));
             }
             $logo_name = $this->logo->store("media/logo", "public_disk");
             $logo = basename($logo_name);
