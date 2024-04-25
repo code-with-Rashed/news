@@ -18,21 +18,21 @@ class WriterSeeder extends Seeder
                 "role" => "admin",
                 "photo" => "user.jpg",
                 "name" => "Rashed alam",
-                "email" => "rashed@news.com",
+                "email" => "admin@news.com",
                 "password" => Hash::make("12345")
             ],
             [
                 "role" => "moderator",
                 "photo" => "user.jpg",
                 "name" => "Arafat islam",
-                "email" => "arafat@news.com",
+                "email" => "moderator@news.com",
                 "password" => Hash::make("12345")
             ],
             [
                 "role" => "writer",
                 "photo" => "user.jpg",
                 "name" => "Mujahid islam",
-                "email" => "mujahid@news.com",
+                "email" => "writer@news.com",
                 "password" => Hash::make("12345")
             ],
         ];
