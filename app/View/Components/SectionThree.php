@@ -27,7 +27,8 @@ class SectionThree extends Component
         if (!is_null($category) && count($category) >= 3) {
             $category_name = $category[2]['name'];
             $section_three_news = News::with('category')->where('category_id', $category[2]['id'])->orderByDesc('id')->paginate(2);
+            return view('components.section-three')->with(compact('section_three_news', 'category_name'));
         }
-        return view('components.section-three')->with(compact('section_three_news', 'category_name'));
+        return false;
     }
 }

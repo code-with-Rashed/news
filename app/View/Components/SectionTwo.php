@@ -27,7 +27,8 @@ class SectionTwo extends Component
         if (!is_null($category) && count($category) >= 2) {
             $category_name = $category[1]['name'];
             $section_two_news = News::with('category')->where('category_id', $category[1]['id'])->orderByDesc('id')->paginate(6);
+            return view('components.section-two')->with(compact('section_two_news', 'category_name'));
         }
-        return view('components.section-two')->with(compact('section_two_news', 'category_name'));
+        return false;
     }
 }

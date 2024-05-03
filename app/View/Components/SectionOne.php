@@ -24,8 +24,11 @@ class SectionOne extends Component
     public function render(): View|Closure|string
     {
         $category = Category::first();
-        $first_news = News::with('category')->where('category_id', $category->id)->first();
-        $section_one_news = News::with('category')->where('category_id', $category->id)->orderByDesc('id')->paginate(6);
-        return view('components.section-one')->with(compact('category', 'first_news', 'section_one_news'));
+        if (!is_null($category)) {
+            $first_news = News::with('category')->where('category_id', $category->id)->first();
+            $section_one_news = News::with('category')->where('category_id', $category->id)->orderByDesc('id')->paginate(6);
+            return view('components.section-one')->with(compact('category', 'first_news', 'section_one_news'));
+        }
+        return false;
     }
 }

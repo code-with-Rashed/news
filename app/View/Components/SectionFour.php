@@ -28,7 +28,8 @@ class SectionFour extends Component
             $category_name = $category[3]['name'];
             $section_four_first_news = News::with('category')->where('category_id', $category[3]['id'])->orderByDesc('id')->first();
             $section_four_news = News::with('category')->where('category_id', $category[3]['id'])->orderByDesc('id')->paginate(4);
+            return view('components.section-four')->with(compact('category_name', 'section_four_first_news', 'section_four_news'));
         }
-        return view('components.section-four')->with(compact('category_name', 'section_four_first_news', 'section_four_news'));
+        return false;
     }
 }
