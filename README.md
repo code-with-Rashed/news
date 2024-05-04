@@ -12,9 +12,24 @@ The NEWS APPLICATION is a dynamic news portal site.
 - To open the terminal in your project directory.  
 then run this commands.
 
+### install required packages
+
 ```
 composer install
 ```
+
+### Create .env file  
+
+```
+cp .env.example .env
+```
+
+### Create application key  
+
+```
+php artisan key:generate
+```
+
 ### Set Environment Variables  
 - To open the .env file.  
 - You have to fill your database credentials.  
